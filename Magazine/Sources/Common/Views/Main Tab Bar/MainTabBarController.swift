@@ -88,19 +88,11 @@ private extension MainTabBarController {
 }
 
 private extension MainTabBarController {
-    private var configJson: JSON { return JSON.init(parseJSON:"""
-        {
-        \"bottom_navigation\": [
-                    {
-                        \"label\": \"Home\",
-                        \"icon\": \"",
-                    },
-                    {
-                        \"label\": \"Latest\",
-                        \"icon\": \"",
-                    }
-                ],
-        
-        }
-    """)}
+    private var configJson: JSON { return JSON([
+        "bottom_navigation": [
+                    ["label": "Home", "icon": "",],
+                    ["label": "Latest", "icon": "",]]
+                ,]
+        )
+    }
 }

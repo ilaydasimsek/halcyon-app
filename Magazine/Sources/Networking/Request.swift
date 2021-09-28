@@ -21,7 +21,7 @@ enum HttpMethod: String {
 
     var encoding: Alamofire.ParameterEncoding {
         switch self {
-        case .post:
+        case .post, .put, .patch:
             return JSONEncoding.default
         default:
             return URLEncoding.default
