@@ -1,7 +1,7 @@
 
 extension DependencyContainer: ViewControllerFactory {
-    func makeMainScreenViewController(coordinator: AppCoordinating) -> MainScreenViewController {
-        let fetcher = self.makeMainScreenFetcher()
-        return MainScreenViewController(fetcher: fetcher, coordinator: coordinator)
+    func makeProfileViewController(coordinator: AppCoordinating) -> ProfileViewController {
+        let fetcher = self.makeProfileFetcher()
+        return ProfileViewController(fetcher: fetcher, coordinator: coordinator)
     }
 }

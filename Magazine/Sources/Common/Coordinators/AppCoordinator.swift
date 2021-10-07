@@ -14,6 +14,11 @@ final class AppCoordinator: Coordinator, AppCoordinating {
     }
 
     func getTabBarController(for item: MainTabBarItem) -> UIViewController {
-        return dependencies.makeMainScreenViewController(coordinator: self)
+        switch item.type {
+        case .profile:
+            return dependencies.makeProfileViewController(coordinator: self)
+        default:
+            return UIViewController()
+        }
     }
 }

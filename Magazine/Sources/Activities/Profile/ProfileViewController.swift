@@ -1,13 +1,13 @@
 import UIKit
 
-class MainScreenViewController: ViewController<MainScreenView> {
-    let fetcher: MainScreenFetching
+class ProfileViewController: ViewController<ProfileView> {
+    let fetcher: ProfileFetching
 
     override var bottomTabBarStatus: VisibilityStatus {
         return .visible
     }
 
-    init(fetcher: MainScreenFetching, coordinator: AppCoordinating) {
+    init(fetcher: ProfileFetching, coordinator: AppCoordinating) {
         self.fetcher = fetcher
         super.init()
     }
@@ -23,9 +23,9 @@ class MainScreenViewController: ViewController<MainScreenView> {
 
     private func fetchScreen() {
         // TODO add screen fetch logic
-        self.rootView.setup(with: MainScreen(name: "Main Screen"))
-//        self.fetcher.getBaseScreen(screenId: "").done({ mainScreen in
-//            self.rootView.setup(with: mainScreen)
+        self.rootView.setup(with: Profile(name: "User Profile Screen"))
+//        self.fetcher.getBaseScreen(screenId: "").done({ profile in
+//            self.rootView.setup(with: profile)
 //        }).catch({ error in
 //            print(error.localizedDescription)
 //            // TODO Handle Error
