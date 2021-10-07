@@ -7,10 +7,15 @@ protocol AppCoordinating {
 
 /// Main coordinator of application, will start the application depending on user state.
 final class AppCoordinator: Coordinator, AppCoordinating {
+    let loggedIn: Bool = false // TODO add real logged in logic
 
     override func start() {
-        let mainTabBarController = MainTabBarController(coordinator: self)
-        self.setViewController(as: mainTabBarController)
+        if (loggedIn) {
+            let mainTabBarController = MainTabBarController(coordinator: self)
+            self.setViewController(as: mainTabBarController)
+        } else {
+            self.setViewController(as: dependencies.makeEntryViewController(coordinator: self))
+        }
     }
 
     func getTabBarController(for item: MainTabBarItem) -> UIViewController {

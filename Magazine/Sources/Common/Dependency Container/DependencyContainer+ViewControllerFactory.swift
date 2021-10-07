@@ -4,4 +4,8 @@ extension DependencyContainer: ViewControllerFactory {
         let fetcher = self.makeProfileFetcher()
         return ProfileViewController(fetcher: fetcher, coordinator: coordinator)
     }
+
+    func makeEntryViewController(coordinator: AppCoordinating) -> EntryViewController {
+        return EntryViewController(coordinator: coordinator)
+    }
 }
