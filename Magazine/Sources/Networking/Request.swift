@@ -2,10 +2,10 @@ import Alamofire
 import UIKit
 
 typealias Headers = [String: String]
-typealias RequestParameters = [String: Any]
+typealias RequestParameters = [String: String]
 
 struct NetworkingConstants {
-    static let baseUrl: URL = URL(string: "")!
+    static let baseUrl: URL = URL(string: "http://localhost:3000/")!
 }
 
 enum HttpMethod: String {

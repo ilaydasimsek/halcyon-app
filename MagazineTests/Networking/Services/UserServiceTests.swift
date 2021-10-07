@@ -1,25 +1,29 @@
 import XCTest
+@testable import Magazine
 
 class UserServiceTests: XCTestCase {
+    // TODO add cases to test model creation and sending requests
+    let networking: Networking = AlamofireNetwork()
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testProfileRequestCorrectness() {
+        let mockUserId = "123456"
+        let request = UserService.profile(userId: mockUserId)
+        
+        XCTAssertEqual(request.baseUrl, NetworkingConstants.baseUrl)
+        XCTAssertEqual(request.method, .get)
+        XCTAssertEqual(request.parameters, RequestParameters())
+        XCTAssertEqual(request.path, "user/\(mockUserId)")
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testLoginRequestCorrectness() {
+        let mockUserName = "test_user"
+        let mockPassword = "password"
+        let request = UserService.login(userName: mockUserName, password: mockPassword)
+        
+        XCTAssertEqual(request.baseUrl, NetworkingConstants.baseUrl)
+        XCTAssertEqual(request.method, .post)
+        XCTAssertEqual(request.parameters, ["user_name":mockUserName, "password": mockPassword])
+        XCTAssertEqual(request.path, "login")
     }
 
 }
