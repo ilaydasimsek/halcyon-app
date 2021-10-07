@@ -34,7 +34,7 @@ class MainTabBarController: UITabBarController {
     private func prepareControllers() {
         // TODO add backend
         guard let tabBarItems: [MainTabBarItem] = try? JsonListDecoder().decode(configJson["bottom_navigation"]) else { return }
-        self.viewControllers = tabBarItems.enumerated().map { (index, element) in
+        self.viewControllers = tabBarItems.enumerated().compactMap { (index, element) in
             self.getTabBarController(for: element, tag: index)
         }
     }
@@ -66,10 +66,13 @@ private extension MainTabBarController {
         }
     }
 
-    func getTabBarController(for item: MainTabBarItem, tag: Int) -> UIViewController {
+    func getTabBarController(for item: MainTabBarItem, tag: Int) -> UIViewController? {
+        guard let _ = item.type else { return nil }
         let controller: UIViewController = coordinator.getTabBarController(for: item)
+
         let tabBarItem = UITabBarItem(title: item.title, image: nil, tag: tag)
         controller.tabBarItem = tabBarItem
+
         self.setupIcon(forItem: tabBarItem, url: item.iconUrl)
         return controller
     }
@@ -88,19 +91,11 @@ private extension MainTabBarController {
 }
 
 private extension MainTabBarController {
-    private var configJson: JSON { return JSON.init(parseJSON:"""
-        {
-        \"bottom_navigation\": [
-                    {
-                        \"label\": \"Home\",
-                        \"icon\": \"",
-                    },
-                    {
-                        \"label\": \"Latest\",
-                        \"icon\": \"",
-                    }
-                ],
-        
-        }
-    """)}
+    private var configJson: JSON { return JSON([
+        "bottom_navigation": [
+                    ["type": "profile", "label": "Profile", "icon": "",],
+                    ["type": "home", "label": "Latest", "icon": "",]]
+                ,]
+        )
+    }
 }

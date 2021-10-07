@@ -1,4 +1,4 @@
 
 protocol FetcherFactory {
-    func makeMainScreenFetcher() -> MainScreenFetching
+    func makeProfileFetcher() -> ProfileFetching
 }

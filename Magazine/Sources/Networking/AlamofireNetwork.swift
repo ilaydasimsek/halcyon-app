@@ -8,18 +8,17 @@ protocol Networking {
 }
 
 class AlamofireNetwork: Networking {
-    private var sessionManager: Alamofire.Session!
+    private var sessionManager: Alamofire.Session
     private let dispatchQueue = DispatchQueue(label: "alamofireNetworking", qos: .background, attributes: .concurrent)
 
     
-    init() {
-        reinitializeSessionManagers()
-    }
-
-    func reinitializeSessionManagers() {
-        let foregroundConfiguration = URLSessionConfiguration.default
-        self.sessionManager?.session.invalidateAndCancel()
-        self.sessionManager = Alamofire.Session(configuration: foregroundConfiguration)
+    init(sessionManager: Alamofire.Session? = nil) {
+        if let sessionManager = sessionManager {
+            self.sessionManager = sessionManager
+        } else {
+            let foregroundConfiguration = URLSessionConfiguration.default
+            self.sessionManager = Alamofire.Session(configuration: foregroundConfiguration)
+        }
     }
 
     /**
@@ -54,3 +53,4 @@ class AlamofireNetwork: Networking {
 
     }
 }
+

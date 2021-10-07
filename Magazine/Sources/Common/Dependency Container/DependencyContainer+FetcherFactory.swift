@@ -1,7 +1,7 @@
 
 extension DependencyContainer: FetcherFactory {
 
-    func makeMainScreenFetcher() -> MainScreenFetching {
-       return MainScreenFetcher(dependencies: self)
+    func makeProfileFetcher() -> ProfileFetching {
+       return ProfileFetcher(dependencies: self)
     }
 }

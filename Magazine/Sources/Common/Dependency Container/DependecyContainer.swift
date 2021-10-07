@@ -6,5 +6,6 @@ protocol Networkable {
 }
 
 class DependencyContainer: Networkable {
+
     let networking: Networking = AlamofireNetwork()
 }
