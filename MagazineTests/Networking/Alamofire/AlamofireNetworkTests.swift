@@ -74,12 +74,7 @@ extension AlamofireNetworkTests {
     func testRequestWithBody(with request: Requestable, fail: Bool) {
         let requestBodyExpectation = expectation(description: "The request body should be correct")
         let onRequest: Mock.OnRequest = { urlRequest, bodyArguments in
-            guard let currentArguments = bodyArguments as? [String: String],
-                  let expectedArguments = request.parameters as? [String: String] else {
-                XCTFail("Either the expected arguments or current arguments are null for \(request)")
-                return
-            }
-            XCTAssertEqual(currentArguments, expectedArguments)
+            XCTAssertEqual(bodyArguments, request.parameters)
             
             print(request.parameters)
             requestBodyExpectation.fulfill()

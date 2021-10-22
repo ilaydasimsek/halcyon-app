@@ -8,17 +8,17 @@ class MainTabBarController: UITabBarController {
     private let unselectedItemTintColor = Colors.paleGray
     private let backgroundColor = Colors.ivory
     
-    private let coordinator: AppCoordinator
+    private let coordinator: MainTabBarCoodinator
     private var tabBarViewControllers: [UIViewController]?
 
 
-    init(coordinator: AppCoordinator) {
+    init(coordinator: MainTabBarCoodinator) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("Application doesn't use storyboard, init(coder:) shouldn't be called")
     }
 
     override func viewDidLoad() {

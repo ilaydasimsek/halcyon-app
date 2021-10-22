@@ -1,12 +1,17 @@
 import Foundation
 
-class EntryViewController: ViewController<EntryView> {
+class EntryViewController: ViewController<EntryView, AuthenticationCoordinator> {
     
-    init(coordinator: AppCoordinating) {
-        super.init()
+    override init(coordinator: AuthenticationCoordinator) {
+        super.init(coordinator: coordinator)
+        prepareActions()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("Application doesn't use storyboard, init(coder:) shouldn't be called")
+    }
+
+    private func prepareActions() {
+
     }
 }

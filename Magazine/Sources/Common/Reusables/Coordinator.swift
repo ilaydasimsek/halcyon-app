@@ -17,15 +17,9 @@ class Coordinator: NSObject {
     }
 
     func start() {
-        preconditionFailure("start method must overriden by the concrete subclass")
+        preconditionFailure("Start method must overriden by the concrete subclass")
     }
 
-    /**
-     Will be called when child controller is dismissed, handles the tap of back button.
-     */
-    func childControllerDidFinish(_ controller: UIViewController) {
-
-    }
 
     func setViewController(as controller: UIViewController) {
         self.navigationController.setViewControllers([controller], animated: false)
@@ -36,6 +30,7 @@ class Coordinator: NSObject {
 extension Coordinator {
 
     final func addChildCoordinator(_ coordinator: Coordinator) {
+        // TODO Make sure add function is always called by throwing an exception
         childCoordinators.append(coordinator)
     }
     
@@ -62,6 +57,16 @@ extension Coordinator: UINavigationControllerDelegate {
         }
 
         self.childControllerDidFinish(fromViewController)
+    }
+
+    /**
+     Will be called when child controller is dismissed, handles the tap of back button.
+     */
+    private func childControllerDidFinish(_ controller: UIViewController) {
+        guard let controller = controller as? ViewController else {
+            preconditionFailure("Controllers must always inherit ViewController class")
+        }
+        self.removeChildCoordinator(controller.coordinator)
     }
 }
 
