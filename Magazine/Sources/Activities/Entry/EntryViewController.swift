@@ -12,6 +12,17 @@ class EntryViewController: ViewController<EntryView, AuthenticationCoordinator> 
     }
 
     private func prepareActions() {
+        rootView.loginButton.addTarget(controller: self,
+                                       action: #selector(self.onClickLoginButton))
+        rootView.signupButton.addTarget(controller: self,
+                                        action: #selector(self.onClickSignUpButton))
+    }
 
+    @objc private func onClickLoginButton() {
+        print("Clicked Login")
+    }
+
+    @objc private func onClickSignUpButton() {
+        print("Clicked Sign Up")
     }
 }

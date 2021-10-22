@@ -4,9 +4,9 @@ import Nuke
 
 class MainTabBarController: UITabBarController {
 
-    private let selectedItemTintColor = Colors.primary
-    private let unselectedItemTintColor = Colors.paleGray
-    private let backgroundColor = Colors.ivory
+    private let selectedItemTintColor = UIColor.primary
+    private let unselectedItemTintColor = UIColor.paleGray
+    private let backgroundColor = UIColor.ivory
     
     private let coordinator: MainTabBarCoodinator
     private var tabBarViewControllers: [UIViewController]?

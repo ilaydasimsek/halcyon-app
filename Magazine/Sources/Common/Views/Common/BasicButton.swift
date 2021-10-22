@@ -1,47 +1,69 @@
 import UIKit
 
-@IBDesignable class BasicButton: UIButton {
+@IBDesignable class BasicButton: UIView {
+    private lazy var button: UIButton = {
+       return UIButton()
+    }()
 
-    @IBInspectable var titleColour: UIColor = .white {
-        didSet {
-            setTitleColor(titleColour, for: .normal)
-        }
-    }
+    @IBInspectable var buttonTitleColor: UIColor = UIColor.ivory
+    @IBInspectable var color: UIColor = UIColor.primary
+    @IBInspectable var buttonTitle: String = ""
 
-    @IBInspectable var bgColour: UIColor = UIColor.gray {
-        didSet {
-            backgroundColor = bgColour
-        }
-    }
-
-    @IBInspectable var buttonTitle: String = "Button" {
-        didSet {
-            setTitle(buttonTitle, for: .normal)
-        }
-    }
+    private let baseCornerRadius: CGFloat = 12
+    private let font: UIFont = UIFont.systemFont(ofSize: 20)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setAttributes()
+        setupView()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setAttributes()
+        setupView()
     }
 
-    public func setAttributes() {
-        setTitleColor(titleColour, for: .normal)
-        backgroundColor = bgColour
-        setTitle(buttonTitle, for: .normal)
-    }
-
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
+        self.setAttributes()
+    }
 
-        setAttributes()
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        self.setAttributes()
+    }
 
-        layer.cornerRadius = 0.5 * bounds.size.height
+    func addTarget(controller: UIViewController, action: Selector) {
+        self.button.addTarget(controller,
+                              action: action,
+                              for: .touchUpInside)
+    }
+}
+
+// MARK: - View Setup
+private extension BasicButton {
+
+    func setupView() {
+        addSubview(button)
+        button.frame = self.bounds
+        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.setAttributes()
+    }
+
+    func setAttributes() {
+        button.backgroundColor = color
+        self.setAttributedTitle(title: buttonTitle)
+        cornerRadius = baseCornerRadius
         clipsToBounds = true
+    }
+
+    func setAttributedTitle(title: String) {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: buttonTitleColor,
+            .font: font,
+        ]
+        let attributedTitle = NSAttributedString(string: title,
+                                                 attributes: attributes)
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
     }
 }
