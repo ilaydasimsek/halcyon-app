@@ -1,5 +1,6 @@
 import Foundation
 
 protocol ViewControllerFactory {
-    func makeProfileViewController(coordinator: AppCoordinating) -> ProfileViewController
+    func makeProfileViewController(coordinator: MainTabBarCoodinator) -> ProfileViewController
+    func makeEntryViewController(coordinator: AuthenticationCoordinator) -> EntryViewController
 }

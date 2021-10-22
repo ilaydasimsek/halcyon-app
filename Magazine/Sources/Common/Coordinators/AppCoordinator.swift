@@ -1,24 +1,46 @@
 import UIKit
 import SwiftyJSON
 
-protocol AppCoordinating {
-    func getTabBarController(for item: MainTabBarItem) -> UIViewController
-}
-
 /// Main coordinator of application, will start the application depending on user state.
-final class AppCoordinator: Coordinator, AppCoordinating {
+final class AppCoordinator: Coordinator {
+    let loggedIn: Bool = false // TODO add real logged in logic
+
+    lazy var authenticationCoordinator: AuthenticationCoordinator = {
+        return AuthenticationCoordinator(navigationController: self.navigationController,
+                                         dependencies: self.dependencies,
+                                         onComplete: onSuccessfulAuthentication(_:))
+    }()
+
+    lazy var mainTabBarCoodinator: MainTabBarCoodinator = {
+        return MainTabBarCoodinator(navigationController: self.navigationController,
+                                    dependencies: self.dependencies)
+    }()
 
     override func start() {
-        let mainTabBarController = MainTabBarController(coordinator: self)
-        self.setViewController(as: mainTabBarController)
+        if (loggedIn) {
+            startApplication()
+        } else {
+            startAuthentication()
+        }
     }
 
-    func getTabBarController(for item: MainTabBarItem) -> UIViewController {
-        switch item.type {
-        case .profile:
-            return dependencies.makeProfileViewController(coordinator: self)
-        default:
-            return UIViewController()
+    func startApplication() {
+        addChildCoordinator(mainTabBarCoodinator)
+        mainTabBarCoodinator.start()
+    }
+
+    func startAuthentication() {
+        addChildCoordinator(authenticationCoordinator)
+        authenticationCoordinator.start()
+    }
+
+    func onSuccessfulAuthentication(_ success: Bool) {
+        if (success) {
+            self.startApplication()
+        } else {
+            // If somehow authentication process failed, go back to the start of authentication
+            self.startAuthentication()
         }
     }
 }
+

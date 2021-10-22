@@ -1,7 +1,8 @@
 import UIKit
 
-class ViewController<T: UIView>: UIViewController {
+class ViewController<T, C>: UIViewController where T: UIView, C: Coordinator {
     let rootView: T
+    let coordinator: C
 
     var bottomTabBarStatus: VisibilityStatus {
         return .hidden
@@ -14,24 +15,26 @@ class ViewController<T: UIView>: UIViewController {
     /**
      Creates a nib from using the type (T) of specified view.
      */
-    init() {
+    init(coordinator: C) {
         guard let nibView = Bundle.main.loadNibNamed(T.nibIdentifier, owner: nil)?.first as? T else {
             fatalError("Nib \(T.self) can't be loaded")
         }
         rootView = nibView
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
 
     /**
      Sets the controllers view to a specified view of type (T)
      */
-    init(withView view: T) {
+    init(withView view: T, coordinator: C) {
         self.rootView = view
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("Application doesn't use storyboard, init(coder:) shouldn't be called")
     }
 
     override func viewWillAppear(_ animated: Bool) {

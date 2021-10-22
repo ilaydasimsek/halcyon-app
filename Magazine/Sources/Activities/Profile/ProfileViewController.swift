@@ -1,19 +1,19 @@
 import UIKit
 
-class ProfileViewController: ViewController<ProfileView> {
+class ProfileViewController: ViewController<ProfileView, MainTabBarCoodinator> {
     let fetcher: ProfileFetching
 
     override var bottomTabBarStatus: VisibilityStatus {
         return .visible
     }
 
-    init(fetcher: ProfileFetching, coordinator: AppCoordinating) {
+    init(fetcher: ProfileFetching, coordinator: MainTabBarCoodinator) {
         self.fetcher = fetcher
-        super.init()
+        super.init(coordinator: coordinator)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("Application doesn't use storyboard, init(coder:) shouldn't be called")
     }
     
     override func viewDidLoad() {
