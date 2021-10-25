@@ -39,29 +39,29 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="RH3-Ts-NUe">
-                    <rect key="frame" x="20" y="640" width="374" height="172"/>
+                    <rect key="frame" x="20" y="676" width="374" height="136"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ea-q5-464" customClass="BasicButton" customModule="Magazine" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="62"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="80" id="Yst-Bt-jJS"/>
+                                <constraint firstAttribute="height" constant="62" id="Pgg-2c-No0"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Login"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCo-sG-aId" customClass="BasicButton" customModule="Magazine" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="92" width="374" height="80"/>
+                            <rect key="frame" x="0.0" y="74" width="374" height="62"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="80" id="Jkj-9I-A8W"/>
-                            </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Sign Up"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="SCo-sG-aId" firstAttribute="height" secondItem="1ea-q5-464" secondAttribute="height" id="2fS-1x-tiP"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="is8-2O-1zw"/>

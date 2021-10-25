@@ -19,10 +19,10 @@ class EntryViewController: ViewController<EntryView, AuthenticationCoordinator> 
     }
 
     @objc private func onClickLoginButton() {
-        print("Clicked Login")
+        coordinator.startLogin()
     }
 
     @objc private func onClickSignUpButton() {
-        print("Clicked Sign Up")
+        coordinator.startSignUp()
     }
 }

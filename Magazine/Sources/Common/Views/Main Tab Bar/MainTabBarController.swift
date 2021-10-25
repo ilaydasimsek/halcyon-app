@@ -58,12 +58,11 @@ private extension MainTabBarController {
             appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor:selectedItemTintColor]
             appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: unselectedItemTintColor]
             tabBar.standardAppearance = appearance
-        } else {
-            tabBar.backgroundColor = backgroundColor
-            tabBar.barTintColor = backgroundColor
-            tabBar.tintColor = selectedItemTintColor
-            tabBar.unselectedItemTintColor = unselectedItemTintColor
         }
+        tabBar.backgroundColor = backgroundColor
+        tabBar.barTintColor = backgroundColor
+        tabBar.tintColor = selectedItemTintColor
+        tabBar.unselectedItemTintColor = unselectedItemTintColor
     }
 
     func getTabBarController(for item: MainTabBarItem, tag: Int) -> UIViewController? {

@@ -33,6 +33,16 @@ extension UIColor {
         return Self.color(named: "DarkGray")
     }
 
+    /**
+        Returns a custom UIColor in AppDelegate's Bundle
+     
+        - Important:
+        Event though AppDelegate's Bundle is equal to Bundle.main, it must be given specifiaclly to init, because
+        the xib  can't find the correct Bundle for IBDesignable's while rendering a color in the interface builder.
+        Refer to https://developer.apple.com/forums/thread/665826?answerId=683969022#683969022
+        for details
+     */
+
     static func color(named name: String) -> UIColor {
         return UIColor(named: name, in: Bundle(for: AppDelegate.self), compatibleWith: nil)!
     }

@@ -22,11 +22,13 @@ class AuthenticationCoordinator: Coordinator {
     }
 
     func startLogin() {
-        
+        let controller = self.dependencies.makeLoginViewController(coordinator: self)
+        self.navigationController.pushViewController(controller, animated: true)
     }
 
-    func startSingUp() {
-        
+    func startSignUp() {
+        let controller = self.dependencies.makeSignUpViewController(coordinator: self)
+        self.navigationController.pushViewController(controller, animated: true)
     }
 
     func onLoginCompleted() {
