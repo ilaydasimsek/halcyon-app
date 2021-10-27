@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -59,7 +57,7 @@
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aT5-Ad-NvP" customClass="BasicButton" customModule="Magazine" customModuleProvider="target">
-                    <rect key="frame" x="20" y="784" width="374" height="58"/>
+                    <rect key="frame" x="20" y="818" width="374" height="58"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="58" id="Bxc-aD-fhb"/>
@@ -84,21 +82,13 @@
                 <constraint firstItem="aT5-Ad-NvP" firstAttribute="width" secondItem="7dj-rL-AHV" secondAttribute="width" id="mww-qp-c9j"/>
             </constraints>
             <connections>
+                <outlet property="emailTextField" destination="Lxs-TQ-2Sf" id="XIB-Ez-Q26"/>
                 <outlet property="loginButton" destination="aT5-Ad-NvP" id="evJ-ti-KxZ"/>
                 <outlet property="passwordTextField" destination="IZz-hP-ChV" id="mg2-t9-9Tn"/>
-                <outlet property="usernameTextField" destination="Lxs-TQ-2Sf" id="XIB-Ez-Q26"/>
             </connections>
             <point key="canvasLocation" x="-555.07246376811599" y="-110.49107142857143"/>
         </view>
     </objects>
-    <designables>
-        <designable name="IZz-hP-ChV">
-            <size key="intrinsicContentSize" width="-1" height="85"/>
-        </designable>
-        <designable name="Lxs-TQ-2Sf">
-            <size key="intrinsicContentSize" width="-1" height="85"/>
-        </designable>
-    </designables>
     <resources>
         <image name="entry_background" width="1280" height="1920"/>
         <namedColor name="Black">

@@ -22,7 +22,7 @@ class LoginViewController: ViewController<LoginView, AuthenticationCoordinator> 
     }
 
     @objc func onClickLoginButton() {
-        fetcher.login(username: rootView.usernameTextField.value,
+        fetcher.login(email: rootView.emailTextField.value,
                       password: rootView.passwordTextField.value)
             .done({ [weak self] login in
                 self?.coordinator.onLoginCompleted()

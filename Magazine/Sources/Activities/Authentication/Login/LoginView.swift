@@ -2,7 +2,7 @@ import UIKit
 
 // TODO add focus change on enter and keyboard close on tapping outside
 class LoginView: UIView {
-    @IBOutlet weak var usernameTextField: AuthTextField!
+    @IBOutlet weak var emailTextField: AuthTextField!
     @IBOutlet weak var passwordTextField: AuthTextField!
     @IBOutlet weak var loginButton: BasicButton!
 
@@ -12,7 +12,7 @@ class LoginView: UIView {
     }
 
     private func prepareView() {
-        usernameTextField.titleText = "Username:"
+        emailTextField.titleText = "Email:"
         passwordTextField.titleText = "Password:"
     }
 }
