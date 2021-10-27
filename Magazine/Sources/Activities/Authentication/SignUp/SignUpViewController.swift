@@ -15,18 +15,20 @@ class SignUpViewController: ViewController<SignUpView, AuthenticationCoordinator
     override func viewDidLoad() {
         super.viewDidLoad()
         self.prepareActions()
-        self.prepareUI()
     }
 
     private func prepareActions() {
-        // Add any button actions here
+        rootView.signUpButton.addTarget(controller: self, action: #selector(onClickSignUpButton))
     }
 
-    private func prepareUI() {
-        // Make any UI specific changes here
-    }
-
-    private func fetch() {
-        // Send the fetch request here, ideally this should return a promise using PromiseKit
+    @objc func onClickSignUpButton() {
+        fetcher.signUp(email: rootView.emailTextField.value,
+                       password: rootView.passwordTextField.value,
+                       passwordAgain: rootView.passwordAgainTextField.value)
+            .done({ [weak self] signUp in
+                self?.coordinator.onLoginCompleted()
+            }).catch({ [weak self] error in
+                self?.coordinator.onError(error)
+            })
     }
 }

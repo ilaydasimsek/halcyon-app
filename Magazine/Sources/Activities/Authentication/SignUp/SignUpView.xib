@@ -40,18 +40,77 @@
                         <constraint firstItem="U5N-dW-yTu" firstAttribute="leading" secondItem="gcq-Rg-ksH" secondAttribute="leading" id="ydK-X4-VVo"/>
                     </constraints>
                 </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aA8-2z-lZX">
+                    <rect key="frame" x="20" y="312.5" width="374" height="271"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-gt-AVN" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="85"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Email"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXI-ZY-AzL" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="93" width="374" height="85"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Password"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="secure" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27e-Yk-5xf" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="186" width="374" height="85"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Password (Again)"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="secure" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Mv-2j-Vkf" customClass="BasicButton" customModule="Magazine" customModuleProvider="target">
+                    <rect key="frame" x="20" y="784" width="374" height="58"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="MJ5-dP-Wf4"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Sign Up"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="to2-0x-eTf"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="gcq-Rg-ksH" firstAttribute="trailing" secondItem="to2-0x-eTf" secondAttribute="trailing" id="65Z-FY-Zqw"/>
                 <constraint firstItem="gcq-Rg-ksH" firstAttribute="leading" secondItem="to2-0x-eTf" secondAttribute="leading" id="FpT-L6-vP0"/>
+                <constraint firstItem="to2-0x-eTf" firstAttribute="trailing" secondItem="aA8-2z-lZX" secondAttribute="trailing" constant="20" id="L3q-uz-Nnb"/>
+                <constraint firstItem="8Mv-2j-Vkf" firstAttribute="width" secondItem="aA8-2z-lZX" secondAttribute="width" id="a80-Vb-gMv"/>
+                <constraint firstItem="to2-0x-eTf" firstAttribute="bottom" secondItem="8Mv-2j-Vkf" secondAttribute="bottom" constant="20" id="dps-i0-pmg"/>
                 <constraint firstAttribute="bottom" secondItem="gcq-Rg-ksH" secondAttribute="bottom" id="fUN-4f-61j"/>
+                <constraint firstItem="aA8-2z-lZX" firstAttribute="centerX" secondItem="kWy-al-Ynl" secondAttribute="centerX" id="gVW-VN-pQM"/>
+                <constraint firstItem="8Mv-2j-Vkf" firstAttribute="centerX" secondItem="kWy-al-Ynl" secondAttribute="centerX" id="gdj-44-gHC"/>
+                <constraint firstItem="aA8-2z-lZX" firstAttribute="leading" secondItem="to2-0x-eTf" secondAttribute="leading" constant="20" id="gfT-Nj-z99"/>
                 <constraint firstItem="gcq-Rg-ksH" firstAttribute="top" secondItem="kWy-al-Ynl" secondAttribute="top" id="rkr-yW-vuE"/>
+                <constraint firstItem="aA8-2z-lZX" firstAttribute="centerY" secondItem="kWy-al-Ynl" secondAttribute="centerY" id="yxQ-ab-fS1"/>
             </constraints>
+            <connections>
+                <outlet property="emailTextField" destination="nbs-gt-AVN" id="UYd-Vz-Vn2"/>
+                <outlet property="passwordAgainTextField" destination="27e-Yk-5xf" id="WyJ-0K-aNE"/>
+                <outlet property="passwordTextField" destination="NXI-ZY-AzL" id="BQk-gX-0Im"/>
+                <outlet property="signUpButton" destination="8Mv-2j-Vkf" id="Lc1-Eu-gkX"/>
+            </connections>
             <point key="canvasLocation" x="133.33333333333334" y="107.8125"/>
         </view>
     </objects>
+    <designables>
+        <designable name="27e-Yk-5xf">
+            <size key="intrinsicContentSize" width="-1" height="85"/>
+        </designable>
+        <designable name="NXI-ZY-AzL">
+            <size key="intrinsicContentSize" width="-1" height="85"/>
+        </designable>
+        <designable name="nbs-gt-AVN">
+            <size key="intrinsicContentSize" width="-1" height="85"/>
+        </designable>
+    </designables>
     <resources>
         <image name="entry_background" width="1280" height="1920"/>
         <namedColor name="Black">

@@ -1,6 +1,10 @@
 import Foundation
 
 class EntryViewController: ViewController<EntryView, AuthenticationCoordinator> {
+
+    override var navigatioBarStatus: VisibilityStatus {
+        return .hidden
+    }
     
     override init(coordinator: AuthenticationCoordinator) {
         super.init(coordinator: coordinator)

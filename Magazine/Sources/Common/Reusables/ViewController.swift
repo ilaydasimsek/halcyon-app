@@ -1,5 +1,42 @@
 import UIKit
 
+enum VisibilityStatus {
+    case hidden, visible
+}
+
+enum NavigationBarStyle {
+    case light, dark, transparent
+
+    var backgroundColor: UIColor? {
+        switch self {
+        case .light:
+            return .ivory
+        case .dark:
+            return .black
+        case .transparent:
+            return nil
+        }
+    }
+
+    var textColor: UIColor {
+        switch self {
+        case .light:
+            return .black
+        case .dark, .transparent:
+            return .ivory
+        }
+    }
+
+    var statusBarStyle: UIStatusBarStyle {
+        switch self {
+        case .light:
+            return .darkContent
+        case .dark, .transparent:
+            return .lightContent
+        }
+    }
+}
+
 class ViewController<T, C>: UIViewController where T: UIView, C: Coordinator {
     let rootView: T
     let coordinator: C
@@ -9,13 +46,20 @@ class ViewController<T, C>: UIViewController where T: UIView, C: Coordinator {
     }
 
     var navigatioBarStatus: VisibilityStatus {
-        return .hidden
+        return .visible
     }
 
     var hideKeyboardWhenTappedAround: Bool {
         return true
     }
 
+    var navigationBarStyle: NavigationBarStyle {
+        return .transparent
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     /**
      Creates a nib from using the type (T) of specified view.
      */
@@ -43,11 +87,13 @@ class ViewController<T, C>: UIViewController where T: UIView, C: Coordinator {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setNeedsStatusBarAppearanceUpdate()
         setup()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBackButton()
         if (hideKeyboardWhenTappedAround) {
             addHideKeyboardGesture()
         }
@@ -57,10 +103,6 @@ class ViewController<T, C>: UIViewController where T: UIView, C: Coordinator {
         super.loadView()
         view = rootView
     }
-
-    enum VisibilityStatus {
-        case hidden, visible
-    }
 }
 
 // MARK: - Controller Setup
@@ -68,8 +110,26 @@ extension ViewController {
 
     private func setup() {
         self.hidesBottomBarWhenPushed = self.bottomTabBarStatus == .hidden
-        self.navigationController?.setNavigationBarHidden(self.navigatioBarStatus == .hidden,
-                                                          animated: false)
+        setupNavigationBar()
+    }
+
+    private func setupNavigationBar() {
+        let hidden = self.navigatioBarStatus == .hidden
+        navigationController?.setNavigationBarHidden(hidden, animated: !hidden)
+
+        guard !hidden, let navBar = navigationController?.navigationBar else { return }
+
+        navBar.barTintColor = navigationBarStyle.backgroundColor
+        navBar.setBackgroundImage(nil, for: .default)
+        navBar.tintColor = navigationBarStyle.textColor
+        navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBarStyle.textColor,
+                                   NSAttributedString.Key.font: UIFont.bold18]
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+    }
+
+    private func setupBackButton() {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
 
