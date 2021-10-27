@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,31 +16,94 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRw-jF-XWf" customClass="BasicButton" customModule="Magazine" customModuleProvider="target">
-                    <rect key="frame" x="132" y="408" width="150" height="80"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ece-gW-vkT" userLabel="Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="entry_background" translatesAutoresizingMaskIntoConstraints="NO" id="5an-xl-CeK">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <color key="tintColor" name="Black"/>
+                        </imageView>
+                        <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oGf-5K-Fzv">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <color key="backgroundColor" name="Black"/>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="Dg0-Xn-Tp2"/>
-                        <constraint firstAttribute="width" constant="150" id="hsO-7b-VhX"/>
+                        <constraint firstItem="oGf-5K-Fzv" firstAttribute="top" secondItem="ece-gW-vkT" secondAttribute="top" id="9Fy-Ob-CRu"/>
+                        <constraint firstAttribute="trailing" secondItem="5an-xl-CeK" secondAttribute="trailing" id="Jxs-EK-6mC"/>
+                        <constraint firstItem="5an-xl-CeK" firstAttribute="leading" secondItem="ece-gW-vkT" secondAttribute="leading" id="TtW-Tm-1ID"/>
+                        <constraint firstAttribute="trailing" secondItem="oGf-5K-Fzv" secondAttribute="trailing" id="X6n-7g-2Kg"/>
+                        <constraint firstAttribute="bottom" secondItem="oGf-5K-Fzv" secondAttribute="bottom" id="k7M-pc-Q3g"/>
+                        <constraint firstItem="oGf-5K-Fzv" firstAttribute="leading" secondItem="ece-gW-vkT" secondAttribute="leading" id="mey-eg-oln"/>
+                        <constraint firstItem="5an-xl-CeK" firstAttribute="top" secondItem="ece-gW-vkT" secondAttribute="top" id="qou-h9-1ba"/>
+                        <constraint firstAttribute="bottom" secondItem="5an-xl-CeK" secondAttribute="bottom" id="zvy-Au-CAj"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7dj-rL-AHV">
+                    <rect key="frame" x="20" y="359" width="374" height="178"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lxs-TQ-2Sf" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="85"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Username"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZz-hP-ChV" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="93" width="374" height="85"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Password"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="secure" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aT5-Ad-NvP" customClass="BasicButton" customModule="Magazine" customModuleProvider="target">
+                    <rect key="frame" x="20" y="784" width="374" height="58"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="Bxc-aD-fhb"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Test"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Login"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="1ma-kc-Zaw"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="NRw-jF-XWf" firstAttribute="centerX" secondItem="seh-8V-n9z" secondAttribute="centerX" id="3rV-Po-Ruk"/>
-                <constraint firstItem="NRw-jF-XWf" firstAttribute="centerY" secondItem="seh-8V-n9z" secondAttribute="centerY" id="FMd-87-nXr"/>
+                <constraint firstItem="ece-gW-vkT" firstAttribute="leading" secondItem="1ma-kc-Zaw" secondAttribute="leading" id="07X-wR-4jO"/>
+                <constraint firstItem="1ma-kc-Zaw" firstAttribute="trailing" secondItem="7dj-rL-AHV" secondAttribute="trailing" constant="20" id="4Ke-4U-l7b"/>
+                <constraint firstItem="7dj-rL-AHV" firstAttribute="leading" secondItem="1ma-kc-Zaw" secondAttribute="leading" constant="20" id="4f0-12-1cq"/>
+                <constraint firstItem="7dj-rL-AHV" firstAttribute="centerY" secondItem="seh-8V-n9z" secondAttribute="centerY" id="5BB-fL-3Pt"/>
+                <constraint firstItem="1ma-kc-Zaw" firstAttribute="trailing" secondItem="ece-gW-vkT" secondAttribute="trailing" id="6Q9-P9-unI"/>
+                <constraint firstItem="1ma-kc-Zaw" firstAttribute="bottom" secondItem="aT5-Ad-NvP" secondAttribute="bottom" constant="20" id="BZd-PM-IBf"/>
+                <constraint firstItem="ece-gW-vkT" firstAttribute="top" secondItem="seh-8V-n9z" secondAttribute="top" id="Bev-E4-B8V"/>
+                <constraint firstAttribute="bottom" secondItem="ece-gW-vkT" secondAttribute="bottom" id="LjJ-7b-ytI"/>
+                <constraint firstItem="aT5-Ad-NvP" firstAttribute="centerX" secondItem="IZz-hP-ChV" secondAttribute="centerX" id="ZBT-yb-yBf"/>
+                <constraint firstItem="aT5-Ad-NvP" firstAttribute="width" secondItem="7dj-rL-AHV" secondAttribute="width" id="mww-qp-c9j"/>
             </constraints>
             <connections>
-                <outlet property="loginButton" destination="NRw-jF-XWf" id="Zhx-Tz-HJd"/>
+                <outlet property="loginButton" destination="aT5-Ad-NvP" id="evJ-ti-KxZ"/>
+                <outlet property="passwordTextField" destination="IZz-hP-ChV" id="mg2-t9-9Tn"/>
+                <outlet property="usernameTextField" destination="Lxs-TQ-2Sf" id="XIB-Ez-Q26"/>
             </connections>
-            <point key="canvasLocation" x="-554" y="-110"/>
+            <point key="canvasLocation" x="-555.07246376811599" y="-110.49107142857143"/>
         </view>
     </objects>
+    <designables>
+        <designable name="IZz-hP-ChV">
+            <size key="intrinsicContentSize" width="-1" height="85"/>
+        </designable>
+        <designable name="Lxs-TQ-2Sf">
+            <size key="intrinsicContentSize" width="-1" height="85"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="entry_background" width="1280" height="1920"/>
+        <namedColor name="Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

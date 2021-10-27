@@ -12,6 +12,10 @@ class ViewController<T, C>: UIViewController where T: UIView, C: Coordinator {
         return .hidden
     }
 
+    var hideKeyboardWhenTappedAround: Bool {
+        return true
+    }
+
     /**
      Creates a nib from using the type (T) of specified view.
      */
@@ -42,6 +46,13 @@ class ViewController<T, C>: UIViewController where T: UIView, C: Coordinator {
         setup()
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if (hideKeyboardWhenTappedAround) {
+            addHideKeyboardGesture()
+        }
+    }
+
     override func loadView() {
         super.loadView()
         view = rootView
@@ -59,5 +70,18 @@ extension ViewController {
         self.hidesBottomBarWhenPushed = self.bottomTabBarStatus == .hidden
         self.navigationController?.setNavigationBarHidden(self.navigatioBarStatus == .hidden,
                                                           animated: false)
+    }
+}
+
+private extension UIViewController {
+
+    func addHideKeyboardGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

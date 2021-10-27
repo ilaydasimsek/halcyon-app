@@ -39,20 +39,20 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="RH3-Ts-NUe">
-                    <rect key="frame" x="20" y="676" width="374" height="136"/>
+                    <rect key="frame" x="20" y="684" width="374" height="128"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ea-q5-464" customClass="BasicButton" customModule="Magazine" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="374" height="62"/>
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="58"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="62" id="Pgg-2c-No0"/>
+                                <constraint firstAttribute="height" constant="58" id="Pgg-2c-No0"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Login"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCo-sG-aId" customClass="BasicButton" customModule="Magazine" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="74" width="374" height="62"/>
+                            <rect key="frame" x="0.0" y="70" width="374" height="58"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Sign Up"/>

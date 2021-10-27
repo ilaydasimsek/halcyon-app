@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,23 +16,47 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCi-zb-tdI">
-                    <rect key="frame" x="177" y="437.5" width="60" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcq-Rg-ksH" userLabel="Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="entry_background" translatesAutoresizingMaskIntoConstraints="NO" id="p3Z-bE-FXG">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <color key="tintColor" name="Black"/>
+                        </imageView>
+                        <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5N-dW-yTu">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <color key="backgroundColor" name="Black"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="U5N-dW-yTu" firstAttribute="top" secondItem="gcq-Rg-ksH" secondAttribute="top" id="6yL-Th-vgB"/>
+                        <constraint firstItem="p3Z-bE-FXG" firstAttribute="leading" secondItem="gcq-Rg-ksH" secondAttribute="leading" id="93C-A6-PhR"/>
+                        <constraint firstAttribute="trailing" secondItem="U5N-dW-yTu" secondAttribute="trailing" id="MtD-r4-y5i"/>
+                        <constraint firstAttribute="bottom" secondItem="p3Z-bE-FXG" secondAttribute="bottom" id="WwF-Gd-LGt"/>
+                        <constraint firstAttribute="trailing" secondItem="p3Z-bE-FXG" secondAttribute="trailing" id="Xhw-0H-6Hi"/>
+                        <constraint firstAttribute="bottom" secondItem="U5N-dW-yTu" secondAttribute="bottom" id="eLs-Eg-L2d"/>
+                        <constraint firstItem="p3Z-bE-FXG" firstAttribute="top" secondItem="gcq-Rg-ksH" secondAttribute="top" id="loU-mo-Jgs"/>
+                        <constraint firstItem="U5N-dW-yTu" firstAttribute="leading" secondItem="gcq-Rg-ksH" secondAttribute="leading" id="ydK-X4-VVo"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="to2-0x-eTf"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="QCi-zb-tdI" firstAttribute="centerX" secondItem="kWy-al-Ynl" secondAttribute="centerX" id="f7D-G1-e6e"/>
-                <constraint firstItem="QCi-zb-tdI" firstAttribute="centerY" secondItem="kWy-al-Ynl" secondAttribute="centerY" id="wzN-HX-4vo"/>
+                <constraint firstItem="gcq-Rg-ksH" firstAttribute="trailing" secondItem="to2-0x-eTf" secondAttribute="trailing" id="65Z-FY-Zqw"/>
+                <constraint firstItem="gcq-Rg-ksH" firstAttribute="leading" secondItem="to2-0x-eTf" secondAttribute="leading" id="FpT-L6-vP0"/>
+                <constraint firstAttribute="bottom" secondItem="gcq-Rg-ksH" secondAttribute="bottom" id="fUN-4f-61j"/>
+                <constraint firstItem="gcq-Rg-ksH" firstAttribute="top" secondItem="kWy-al-Ynl" secondAttribute="top" id="rkr-yW-vuE"/>
             </constraints>
-            <point key="canvasLocation" x="134" y="108"/>
+            <point key="canvasLocation" x="133.33333333333334" y="107.8125"/>
         </view>
     </objects>
     <resources>
+        <image name="entry_background" width="1280" height="1920"/>
+        <namedColor name="Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

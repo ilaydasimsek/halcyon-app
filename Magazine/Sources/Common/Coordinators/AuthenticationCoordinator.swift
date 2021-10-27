@@ -34,4 +34,11 @@ class AuthenticationCoordinator: Coordinator {
     func onLoginCompleted() {
         self.onComplete?(true)
     }
+
+    // TODO handle error with custom dialogs properly
+    func onError(_ error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.navigationController.present(alert, animated: true, completion: nil)
+    }
 }

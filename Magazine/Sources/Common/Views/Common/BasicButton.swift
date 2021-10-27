@@ -10,7 +10,7 @@ import UIKit
     @IBInspectable var buttonTitle: String = ""
 
     private let baseCornerRadius: CGFloat = 12
-    private let font: UIFont = UIFont.systemFont(ofSize: 20)
+    private let font: UIFont = UIFont.bold20
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,12 +24,12 @@ import UIKit
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.setAttributes()
+        self.prepareView()
     }
 
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        self.setAttributes()
+        self.prepareView()
     }
 
     func addTarget(controller: UIViewController, action: Selector) {
@@ -46,10 +46,10 @@ private extension BasicButton {
         addSubview(button)
         button.frame = self.bounds
         button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.setAttributes()
+        self.prepareView()
     }
 
-    func setAttributes() {
+    func prepareView() {
         button.backgroundColor = color
         self.setAttributedTitle(title: buttonTitle)
         cornerRadius = baseCornerRadius

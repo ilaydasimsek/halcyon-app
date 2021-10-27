@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
+            <connections>
+                <outlet property="textField" destination="QmQ-6o-HXW" id="yBZ-Vv-l7E"/>
+                <outlet property="titleLabel" destination="X2s-P6-3yn" id="qay-ja-THn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="aHv-rC-wZ7">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2s-P6-3yn">
+                    <rect key="frame" x="0.0" y="2" width="33" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="Ivory"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QmQ-6o-HXW">
+                    <rect key="frame" x="0.0" y="40" width="414" height="45"/>
+                    <color key="backgroundColor" name="Ivory"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="9Ys-Dn-z1K"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="mr1-Sh-uWU"/>
+            <constraints>
+                <constraint firstItem="mr1-Sh-uWU" firstAttribute="trailing" secondItem="QmQ-6o-HXW" secondAttribute="trailing" id="3Cf-jV-9ov"/>
+                <constraint firstItem="X2s-P6-3yn" firstAttribute="leading" secondItem="QmQ-6o-HXW" secondAttribute="leading" id="EXV-RZ-mGR"/>
+                <constraint firstItem="QmQ-6o-HXW" firstAttribute="leading" secondItem="mr1-Sh-uWU" secondAttribute="leading" id="H9Z-n7-wZ0"/>
+                <constraint firstItem="QmQ-6o-HXW" firstAttribute="top" secondItem="X2s-P6-3yn" secondAttribute="bottom" constant="8" id="aNl-hb-Nms"/>
+                <constraint firstItem="X2s-P6-3yn" firstAttribute="top" secondItem="aHv-rC-wZ7" secondAttribute="top" constant="2" id="cNO-pm-YQa"/>
+                <constraint firstItem="mr1-Sh-uWU" firstAttribute="bottom" secondItem="QmQ-6o-HXW" secondAttribute="bottom" id="vLj-3U-x4k"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="131.8840579710145" y="361.60714285714283"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="Ivory">
+            <color red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
