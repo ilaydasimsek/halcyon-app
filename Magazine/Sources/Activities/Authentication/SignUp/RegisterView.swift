@@ -1,10 +1,10 @@
 import UIKit
 
-class SignUpView: UIView {
+class RegisterView: UIView {
     @IBOutlet weak var emailTextField: AuthTextField!
     @IBOutlet weak var passwordTextField: AuthTextField!
     @IBOutlet weak var passwordAgainTextField: AuthTextField!
-    @IBOutlet weak var signUpButton: BasicButton!
+    @IBOutlet weak var registerButton: BasicButton!
 
     override func layoutSubviews() {
         super.layoutSubviews()

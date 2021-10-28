@@ -1,6 +1,6 @@
 import UIKit
 
-class SignUpViewController: ViewController<SignUpView, AuthenticationCoordinator> {
+class RegisterViewController: ViewController<RegisterView, AuthenticationCoordinator> {
     let fetcher: AuthenticationFetching
 
     init(fetcher: AuthenticationFetching, coordinator: AuthenticationCoordinator) {
@@ -18,14 +18,14 @@ class SignUpViewController: ViewController<SignUpView, AuthenticationCoordinator
     }
 
     private func prepareActions() {
-        rootView.signUpButton.addTarget(controller: self, action: #selector(onClickSignUpButton))
+        rootView.registerButton.addTarget(controller: self, action: #selector(onClickRegisterButton))
     }
 
-    @objc func onClickSignUpButton() {
-        fetcher.signUp(email: rootView.emailTextField.value,
+    @objc func onClickRegisterButton() {
+        fetcher.register(email: rootView.emailTextField.value,
                        password: rootView.passwordTextField.value,
                        passwordAgain: rootView.passwordAgainTextField.value)
-            .done({ [weak self] signUp in
+            .done({ [weak self] auth in
                 self?.coordinator.onLoginCompleted()
             }).catch({ [weak self] error in
                 self?.coordinator.onError(error)

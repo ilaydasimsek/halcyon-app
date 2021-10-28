@@ -55,7 +55,7 @@
                             <rect key="frame" x="0.0" y="70" width="374" height="58"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Sign Up"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Register"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
@@ -76,7 +76,7 @@
             </constraints>
             <connections>
                 <outlet property="loginButton" destination="1ea-q5-464" id="0jY-Wq-Omz"/>
-                <outlet property="signupButton" destination="SCo-sG-aId" id="P4v-IT-iZK"/>
+                <outlet property="registerButton" destination="SCo-sG-aId" id="P4v-IT-iZK"/>
             </connections>
             <point key="canvasLocation" x="34.782608695652179" y="124.55357142857142"/>
         </view>

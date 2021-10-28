@@ -3,7 +3,7 @@ import SwiftyJSON
 
 /// Main coordinator of application, will start the application depending on user state.
 final class AppCoordinator: Coordinator {
-    let loggedIn: Bool = false // TODO add real logged in logic
+    let loggedIn: Bool = true // TODO add real logged in logic
 
     lazy var authenticationCoordinator: AuthenticationCoordinator = {
         return AuthenticationCoordinator(navigationController: self.navigationController,

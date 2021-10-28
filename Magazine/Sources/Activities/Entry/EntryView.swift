@@ -2,7 +2,7 @@ import UIKit
 
 class EntryView: UIView {
     @IBOutlet weak var loginButton: BasicButton!
-    @IBOutlet weak var signupButton: BasicButton!
+    @IBOutlet weak var registerButton: BasicButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -11,6 +11,6 @@ class EntryView: UIView {
 
     private func setupUI() {
         loginButton.buttonTitle = "Login"
-        signupButton.buttonTitle = "Sign Up"
+        registerButton.buttonTitle = "Register"
     }
 }

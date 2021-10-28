@@ -18,8 +18,8 @@ extension DependencyContainer {
         return LoginViewController(fetcher: fetcher, coordinator: coordinator)
     }
 
-    func makeSignUpViewController(coordinator: AuthenticationCoordinator) -> SignUpViewController {
+    func makeRegisterViewController(coordinator: AuthenticationCoordinator) -> RegisterViewController {
         let fetcher = self.makeAuthenticationFetcher()
-        return SignUpViewController(fetcher: fetcher, coordinator: coordinator)
+        return RegisterViewController(fetcher: fetcher, coordinator: coordinator)
     }
 }

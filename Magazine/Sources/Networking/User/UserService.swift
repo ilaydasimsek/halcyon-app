@@ -3,7 +3,7 @@ import Foundation
 enum UserService: Requestable {
     case profile(userId: String)
     case login(email: String, password: String)
-    case signup(email: String, password: String, passwordAgain: String)
+    case register(email: String, password: String, passwordAgain: String)
 
     var baseUrl: URL {
         return NetworkingConstants.baseUrl
@@ -15,8 +15,8 @@ enum UserService: Requestable {
             return "user/\(userId)"
         case .login:
             return "login"
-        case .signup:
-            return "signup"
+        case .register:
+            return "register"
         }
     }
 
@@ -26,7 +26,7 @@ enum UserService: Requestable {
             return .get
         case .login:
             return .post
-        case .signup:
+        case .register:
             return .post
         }
     }
@@ -37,8 +37,8 @@ enum UserService: Requestable {
             return [:]
         case .login(let email, let password):
             return ["email": email, "password": password]
-        case .signup(let email, let password, let passwordAgain):
-            return ["email": email, "password": password]
+        case .register(let email, let password, let passwordAgain):
+            return ["email": email, "password": password, "password_again": passwordAgain]
         }
     }
 }

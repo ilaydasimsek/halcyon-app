@@ -33,7 +33,7 @@ class MainTabBarController: UITabBarController {
 
     private func prepareControllers() {
         // TODO add backend
-        guard let tabBarItems: [MainTabBarItem] = try? JsonListDecoder().decode(configJson["bottom_navigation"]) else { return }
+        guard let tabBarItems: [MainTabBarItem] = try? configJson["bottom_navigation"].parseIntoArray() else { return }
         self.viewControllers = tabBarItems.enumerated().compactMap { (index, element) in
             self.getTabBarController(for: element, tag: index)
         }

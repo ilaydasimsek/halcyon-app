@@ -5,6 +5,6 @@ protocol ViewControllerFactory {
 
     // Authentication
     func makeEntryViewController(coordinator: AuthenticationCoordinator) -> EntryViewController
-    func makeSignUpViewController(coordinator: AuthenticationCoordinator) -> SignUpViewController
+    func makeRegisterViewController(coordinator: AuthenticationCoordinator) -> RegisterViewController
     func makeLoginViewController(coordinator: AuthenticationCoordinator) -> LoginViewController
 }

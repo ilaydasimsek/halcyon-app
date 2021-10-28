@@ -26,8 +26,8 @@ class AuthenticationCoordinator: Coordinator {
         self.navigationController.pushViewController(controller, animated: true)
     }
 
-    func startSignUp() {
-        let controller = self.dependencies.makeSignUpViewController(coordinator: self)
+    func startRegister() {
+        let controller = self.dependencies.makeRegisterViewController(coordinator: self)
         self.navigationController.pushViewController(controller, animated: true)
     }
 

@@ -18,15 +18,15 @@ class EntryViewController: ViewController<EntryView, AuthenticationCoordinator> 
     private func prepareActions() {
         rootView.loginButton.addTarget(controller: self,
                                        action: #selector(self.onClickLoginButton))
-        rootView.signupButton.addTarget(controller: self,
-                                        action: #selector(self.onClickSignUpButton))
+        rootView.registerButton.addTarget(controller: self,
+                                        action: #selector(self.onClickRegisterButton))
     }
 
     @objc private func onClickLoginButton() {
         coordinator.startLogin()
     }
 
-    @objc private func onClickSignUpButton() {
-        coordinator.startSignUp()
+    @objc private func onClickRegisterButton() {
+        coordinator.startRegister()
     }
 }

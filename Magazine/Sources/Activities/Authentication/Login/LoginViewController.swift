@@ -24,7 +24,7 @@ class LoginViewController: ViewController<LoginView, AuthenticationCoordinator> 
     @objc func onClickLoginButton() {
         fetcher.login(email: rootView.emailTextField.value,
                       password: rootView.passwordTextField.value)
-            .done({ [weak self] login in
+            .done({ [weak self] auth in
                 self?.coordinator.onLoginCompleted()
             }).catch({ [weak self] error in
                 self?.coordinator.onError(error)

@@ -2,18 +2,18 @@ import Foundation
 import PromiseKit
 
 protocol AuthenticationFetching {
-    func login(email: String, password: String) -> Promise<Login>
-    func signUp(email: String, password: String, passwordAgain: String) -> Promise<SignUp>
+    func login(email: String, password: String) -> Promise<Authentication>
+    func register(email: String, password: String, passwordAgain: String) -> Promise<Authentication>
 }
 
 class AuthenticationFetcher: Fetcher, AuthenticationFetching {
 
-    func login(email: String, password: String) -> Promise<Login> {
+    func login(email: String, password: String) -> Promise<Authentication> {
         return request(UserService.login(email: email, password: password))
     }
 
-    func signUp(email: String, password: String, passwordAgain: String) -> Promise<SignUp> {
-        return request(UserService.signup(email: email,
+    func register(email: String, password: String, passwordAgain: String) -> Promise<Authentication> {
+        return request(UserService.register(email: email,
                                           password: password,
                                           passwordAgain: passwordAgain))
     }
