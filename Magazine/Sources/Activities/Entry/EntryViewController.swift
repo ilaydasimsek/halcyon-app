@@ -1,16 +1,18 @@
 import Foundation
 
-class EntryViewController: ViewController<EntryView, AuthenticationCoordinator> {
+class EntryViewController: ViewController<EntryView> {
+    let coordinator: AuthenticationCoordinating
 
     override var navigatioBarStatus: VisibilityStatus {
         return .hidden
     }
     
-    override init(coordinator: AuthenticationCoordinator) {
-        super.init(coordinator: coordinator)
+    init(coordinator: AuthenticationCoordinating) {
+        self.coordinator = coordinator
+        super.init(baseCoordinator: coordinator)
         prepareActions()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("Application doesn't use storyboard, init(coder:) shouldn't be called")
     }

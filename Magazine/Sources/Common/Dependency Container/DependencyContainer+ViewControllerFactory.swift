@@ -1,6 +1,6 @@
 
 extension DependencyContainer: ViewControllerFactory {
-    func makeProfileViewController(coordinator: MainTabBarCoodinator) -> ProfileViewController {
+    func makeProfileViewController(coordinator: MainTabBarCoodinating) -> ProfileViewController {
         let fetcher = self.makeProfileFetcher()
         return ProfileViewController(fetcher: fetcher, coordinator: coordinator)
     }
@@ -9,16 +9,16 @@ extension DependencyContainer: ViewControllerFactory {
 // Authentication
 extension DependencyContainer {
     
-    func makeEntryViewController(coordinator: AuthenticationCoordinator) -> EntryViewController {
+    func makeEntryViewController(coordinator: AuthenticationCoordinating) -> EntryViewController {
         return EntryViewController(coordinator: coordinator)
     }
 
-    func makeLoginViewController(coordinator: AuthenticationCoordinator) -> LoginViewController {
+    func makeLoginViewController(coordinator: AuthenticationCoordinating) -> LoginViewController {
         let fetcher = self.makeAuthenticationFetcher()
         return LoginViewController(fetcher: fetcher, coordinator: coordinator)
     }
 
-    func makeRegisterViewController(coordinator: AuthenticationCoordinator) -> RegisterViewController {
+    func makeRegisterViewController(coordinator: AuthenticationCoordinating) -> RegisterViewController {
         let fetcher = self.makeAuthenticationFetcher()
         return RegisterViewController(fetcher: fetcher, coordinator: coordinator)
     }

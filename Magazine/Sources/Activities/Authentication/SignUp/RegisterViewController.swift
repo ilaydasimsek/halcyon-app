@@ -1,11 +1,13 @@
 import UIKit
 
-class RegisterViewController: ViewController<RegisterView, AuthenticationCoordinator> {
+class RegisterViewController: ViewController<RegisterView> {
     let fetcher: AuthenticationFetching
+    let coordinator: AuthenticationCoordinating
 
-    init(fetcher: AuthenticationFetching, coordinator: AuthenticationCoordinator) {
+    init(fetcher: AuthenticationFetching, coordinator: AuthenticationCoordinating) {
         self.fetcher = fetcher
-        super.init(coordinator: coordinator)
+        self.coordinator = coordinator
+        super.init(baseCoordinator: coordinator)
     }
     
     required init?(coder: NSCoder) {

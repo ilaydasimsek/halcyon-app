@@ -8,11 +8,11 @@ class MainTabBarController: UITabBarController {
     private let unselectedItemTintColor = UIColor.paleGray
     private let backgroundColor = UIColor.ivory
     
-    private let coordinator: MainTabBarCoodinator
+    private let coordinator: MainTabBarCoodinating
     private var tabBarViewControllers: [UIViewController]?
 
 
-    init(coordinator: MainTabBarCoodinator) {
+    init(coordinator: MainTabBarCoodinating) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }

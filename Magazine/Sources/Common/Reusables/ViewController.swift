@@ -37,9 +37,9 @@ enum NavigationBarStyle {
     }
 }
 
-class ViewController<T, C>: UIViewController where T: UIView, C: Coordinator {
+class ViewController<T: UIView>: UIViewController {
     let rootView: T
-    let coordinator: C
+    let baseCoordinator: Coordinatable
 
     var bottomTabBarStatus: VisibilityStatus {
         return .hidden
@@ -63,21 +63,21 @@ class ViewController<T, C>: UIViewController where T: UIView, C: Coordinator {
     /**
      Creates a nib from using the type (T) of specified view.
      */
-    init(coordinator: C) {
+    init(baseCoordinator: Coordinatable) {
         guard let nibView = Bundle.main.loadNibNamed(T.nibIdentifier, owner: nil)?.first as? T else {
             fatalError("Nib \(T.self) can't be loaded")
         }
         rootView = nibView
-        self.coordinator = coordinator
+        self.baseCoordinator = baseCoordinator
         super.init(nibName: nil, bundle: nil)
     }
 
     /**
      Sets the controllers view to a specified view of type (T)
      */
-    init(withView view: T, coordinator: C) {
+    init(withView view: T, baseCoordinator: Coordinatable) {
         self.rootView = view
-        self.coordinator = coordinator
+        self.baseCoordinator = baseCoordinator
         super.init(nibName: nil, bundle: nil)
     }
     

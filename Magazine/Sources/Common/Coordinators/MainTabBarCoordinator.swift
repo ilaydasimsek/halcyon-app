@@ -1,6 +1,10 @@
 import UIKit
 
-class MainTabBarCoodinator: Coordinator {
+protocol MainTabBarCoodinating where Self: Coordinator {
+    func getTabBarController(for item: MainTabBarItem) -> UIViewController
+}
+
+class MainTabBarCoodinator: Coordinator, MainTabBarCoodinating {
 
     override func start() {
         let mainTabBarController = MainTabBarController(coordinator: self)

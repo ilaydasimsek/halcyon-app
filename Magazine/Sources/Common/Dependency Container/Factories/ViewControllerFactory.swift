@@ -1,10 +1,10 @@
 import Foundation
 
 protocol ViewControllerFactory {
-    func makeProfileViewController(coordinator: MainTabBarCoodinator) -> ProfileViewController
+    func makeProfileViewController(coordinator: MainTabBarCoodinating) -> ProfileViewController
 
     // Authentication
-    func makeEntryViewController(coordinator: AuthenticationCoordinator) -> EntryViewController
-    func makeRegisterViewController(coordinator: AuthenticationCoordinator) -> RegisterViewController
-    func makeLoginViewController(coordinator: AuthenticationCoordinator) -> LoginViewController
+    func makeEntryViewController(coordinator: AuthenticationCoordinating) -> EntryViewController
+    func makeRegisterViewController(coordinator: AuthenticationCoordinating) -> RegisterViewController
+    func makeLoginViewController(coordinator: AuthenticationCoordinating) -> LoginViewController
 }

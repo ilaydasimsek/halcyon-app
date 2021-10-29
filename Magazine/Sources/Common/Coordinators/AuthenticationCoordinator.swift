@@ -1,6 +1,13 @@
 import UIKit
 
-class AuthenticationCoordinator: Coordinator {
+protocol AuthenticationCoordinating where Self: Coordinator {
+    func startLogin()
+    func startRegister()
+    func onLoginCompleted()
+    func onError(_ error: Error)
+}
+
+class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
     var onComplete: ((_ success: Bool) -> Void)?
 
     convenience init(navigationController: UINavigationController,
