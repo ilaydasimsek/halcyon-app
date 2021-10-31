@@ -2,6 +2,10 @@ import UIKit
 
 extension UIFont {
 
+    static var regular14: UIFont {
+        return UIFont.boldSystemFont(ofSize: 14)
+    }
+
     static var bold18: UIFont {
         return UIFont.boldSystemFont(ofSize: 18)
     }

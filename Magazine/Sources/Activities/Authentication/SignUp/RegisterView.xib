@@ -75,6 +75,12 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Sign Up"/>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error text will appear here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHX-q1-eCb">
+                    <rect key="frame" x="109.5" y="603.5" width="195" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="MonzaRed"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="to2-0x-eTf"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -82,6 +88,8 @@
                 <constraint firstItem="gcq-Rg-ksH" firstAttribute="trailing" secondItem="to2-0x-eTf" secondAttribute="trailing" id="65Z-FY-Zqw"/>
                 <constraint firstItem="gcq-Rg-ksH" firstAttribute="leading" secondItem="to2-0x-eTf" secondAttribute="leading" id="FpT-L6-vP0"/>
                 <constraint firstItem="to2-0x-eTf" firstAttribute="trailing" secondItem="aA8-2z-lZX" secondAttribute="trailing" constant="20" id="L3q-uz-Nnb"/>
+                <constraint firstItem="NHX-q1-eCb" firstAttribute="centerX" secondItem="kWy-al-Ynl" secondAttribute="centerX" id="Nxd-2Q-3Ug"/>
+                <constraint firstItem="NHX-q1-eCb" firstAttribute="top" secondItem="aA8-2z-lZX" secondAttribute="bottom" constant="20" id="WZ9-mA-1Ht"/>
                 <constraint firstItem="8Mv-2j-Vkf" firstAttribute="width" secondItem="aA8-2z-lZX" secondAttribute="width" id="a80-Vb-gMv"/>
                 <constraint firstItem="to2-0x-eTf" firstAttribute="bottom" secondItem="8Mv-2j-Vkf" secondAttribute="bottom" constant="20" id="dps-i0-pmg"/>
                 <constraint firstAttribute="bottom" secondItem="gcq-Rg-ksH" secondAttribute="bottom" id="fUN-4f-61j"/>
@@ -93,6 +101,7 @@
             </constraints>
             <connections>
                 <outlet property="emailTextField" destination="nbs-gt-AVN" id="UYd-Vz-Vn2"/>
+                <outlet property="errorLabel" destination="NHX-q1-eCb" id="91w-ZO-wxA"/>
                 <outlet property="passwordAgainTextField" destination="27e-Yk-5xf" id="WyJ-0K-aNE"/>
                 <outlet property="passwordTextField" destination="NXI-ZY-AzL" id="BQk-gX-0Im"/>
                 <outlet property="registerButton" destination="8Mv-2j-Vkf" id="Lc1-Eu-gkX"/>
@@ -115,6 +124,9 @@
         <image name="entry_background" width="1280" height="1920"/>
         <namedColor name="Black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MonzaRed">
+            <color red="0.84313725490196079" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

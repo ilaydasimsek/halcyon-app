@@ -33,6 +33,10 @@ extension UIColor {
         return Self.color(named: "DarkGray")
     }
 
+    static var monzaRed: UIColor {
+        return Self.color(named: "MonzaRed")
+    }
+
     /**
         Returns a custom UIColor in AppDelegate's Bundle
      

@@ -22,6 +22,11 @@ class LoginViewController: ViewController<LoginView> {
     private func prepareActions() {
         rootView.loginButton.addTarget(controller: self, action: #selector(onClickLoginButton))
     }
+    
+    private func handleError(_ error: Error) {
+        // TODO Handle firebase login register errors
+        coordinator.onError(error)
+    }
 
     @objc func onClickLoginButton() {
         fetcher.login(email: rootView.emailTextField.value,

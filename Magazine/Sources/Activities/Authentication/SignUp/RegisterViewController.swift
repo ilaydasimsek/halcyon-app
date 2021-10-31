@@ -23,6 +23,11 @@ class RegisterViewController: ViewController<RegisterView> {
         rootView.registerButton.addTarget(controller: self, action: #selector(onClickRegisterButton))
     }
 
+    private func handleError(_ error: Error) {
+        // TODO Handle firebase login register errors
+        coordinator.onError(error)
+    }
+
     @objc func onClickRegisterButton() {
         fetcher.register(email: rootView.emailTextField.value,
                        password: rootView.passwordTextField.value,
@@ -30,7 +35,7 @@ class RegisterViewController: ViewController<RegisterView> {
             .done({ [weak self] auth in
                 self?.coordinator.onLoginCompleted()
             }).catch({ [weak self] error in
-                self?.coordinator.onError(error)
+                self?.handleError(error)
             })
     }
 }
