@@ -79,8 +79,7 @@ extension AlamofireNetworkTests {
                 return
             }
             XCTAssertEqual(bodyArguments, request.parameters)
-            
-            print(request.parameters)
+
             requestBodyExpectation.fulfill()
         }
         registerMock(with: request, fail: fail, onRequest: onRequest)
