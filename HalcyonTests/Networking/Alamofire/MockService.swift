@@ -1,5 +1,5 @@
 import Foundation
-@testable import Magazine
+@testable import Halcyon
 
 enum MockError: Error {
     case mock

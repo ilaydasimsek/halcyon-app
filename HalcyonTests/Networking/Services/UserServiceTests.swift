@@ -1,5 +1,5 @@
 import XCTest
-@testable import Magazine
+@testable import Halcyon
 
 class UserServiceTests: XCTestCase {
     // TODO add cases to test model creation and sending requests
