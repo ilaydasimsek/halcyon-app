@@ -5,13 +5,13 @@ import SwiftyJSON
 final class AppCoordinator: Coordinator {
     let loggedIn: Bool = false // TODO add real logged in logic
 
-    lazy var authenticationCoordinator: AuthenticationCoordinator = {
+    lazy var authenticationCoordinator: AuthenticationCoordinating = {
         return AuthenticationCoordinator(navigationController: self.navigationController,
                                          dependencies: self.dependencies,
                                          onComplete: onSuccessfulAuthentication(_:))
     }()
 
-    lazy var mainTabBarCoodinator: MainTabBarCoodinator = {
+    lazy var mainTabBarCoodinator: MainTabBarCoodinating = {
         return MainTabBarCoodinator(navigationController: self.navigationController,
                                     dependencies: self.dependencies)
     }()

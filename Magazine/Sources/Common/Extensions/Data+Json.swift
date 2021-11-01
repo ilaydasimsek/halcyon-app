@@ -11,7 +11,7 @@ extension Data {
     @discardableResult
     func asJson() throws -> JSON {
         guard let json = try? JSON(data: self) else {
-            throw RequestError.networkError
+            throw RequestError.decodeError
         }
         return json
     }

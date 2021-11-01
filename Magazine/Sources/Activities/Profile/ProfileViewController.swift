@@ -1,15 +1,17 @@
 import UIKit
 
-class ProfileViewController: ViewController<ProfileView, MainTabBarCoodinator> {
+class ProfileViewController: ViewController<ProfileView> {
     let fetcher: ProfileFetching
+    let coordinator: MainTabBarCoodinating
 
     override var bottomTabBarStatus: VisibilityStatus {
         return .visible
     }
 
-    init(fetcher: ProfileFetching, coordinator: MainTabBarCoodinator) {
+    init(fetcher: ProfileFetching, coordinator: MainTabBarCoodinating) {
         self.fetcher = fetcher
-        super.init(coordinator: coordinator)
+        self.coordinator = coordinator
+        super.init(baseCoordinator: coordinator)
     }
     
     required init?(coder: NSCoder) {

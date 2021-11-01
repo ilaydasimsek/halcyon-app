@@ -18,43 +18,43 @@ class AlamofireNetworkTests: XCTestCase {
         self.networking =  AlamofireNetwork(sessionManager: sessionManager)
     }
     
-    func testGetRequestSuccess() {
+    func testGetRequest_Success() {
         testRequestWithoutBody(with: MockService.getRequest, fail: false)
     }
     
-    func testGetRequestFail() {
+    func testGetRequest_Fail() {
         testRequestWithoutBody(with: MockService.getRequest, fail: true)
     }
     
-    func testPostRequestSuccess() {
+    func testPostRequest_Success() {
         self.testRequestWithBody(with: MockService.postRequest, fail: false)
     }
     
-    func testPostRequestFail() {
+    func testPostRequest_Fail() {
         self.testRequestWithBody(with: MockService.postRequest, fail: true)
     }
     
-    func testDeleteRequestSuccess() {
+    func testDeleteRequest_Success() {
         self.testRequestWithoutBody(with: MockService.deleteRequest, fail: false)
     }
     
-    func testDeleteRequestFail() {
+    func testDeleteRequest_Fail() {
         self.testRequestWithoutBody(with: MockService.deleteRequest, fail: true)
     }
     
-    func testPutRequestSuccess() {
+    func testPutRequest_Success() {
         self.testRequestWithBody(with: MockService.putRequest, fail: false)
     }
     
-    func testPutRequestFail() {
+    func testPutRequest_Fail() {
         self.testRequestWithBody(with: MockService.putRequest, fail: true)
     }
     
-    func testPatchRequestSuccess() {
+    func testPatchRequest_Success() {
         self.testRequestWithBody(with: MockService.patchRequest, fail: false)
     }
     
-    func testPatchRequestFail() {
+    func testPatchRequest_Fail() {
         self.testRequestWithBody(with: MockService.patchRequest, fail: true)
     }
 }
@@ -74,6 +74,10 @@ extension AlamofireNetworkTests {
     func testRequestWithBody(with request: Requestable, fail: Bool) {
         let requestBodyExpectation = expectation(description: "The request body should be correct")
         let onRequest: Mock.OnRequest = { urlRequest, bodyArguments in
+            guard let bodyArguments = bodyArguments as? RequestParameters else {
+                XCTFail("Body arguments must be of type RequestParameters")
+                return
+            }
             XCTAssertEqual(bodyArguments, request.parameters)
             
             print(request.parameters)

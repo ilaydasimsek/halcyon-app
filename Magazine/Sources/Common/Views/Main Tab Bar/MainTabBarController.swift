@@ -8,11 +8,11 @@ class MainTabBarController: UITabBarController {
     private let unselectedItemTintColor = UIColor.paleGray
     private let backgroundColor = UIColor.ivory
     
-    private let coordinator: MainTabBarCoodinator
+    private let coordinator: MainTabBarCoodinating
     private var tabBarViewControllers: [UIViewController]?
 
 
-    init(coordinator: MainTabBarCoodinator) {
+    init(coordinator: MainTabBarCoodinating) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
@@ -33,7 +33,7 @@ class MainTabBarController: UITabBarController {
 
     private func prepareControllers() {
         // TODO add backend
-        guard let tabBarItems: [MainTabBarItem] = try? JsonListDecoder().decode(configJson["bottom_navigation"]) else { return }
+        guard let tabBarItems: [MainTabBarItem] = try? configJson["bottom_navigation"].parseIntoArray() else { return }
         self.viewControllers = tabBarItems.enumerated().compactMap { (index, element) in
             self.getTabBarController(for: element, tag: index)
         }
@@ -58,12 +58,11 @@ private extension MainTabBarController {
             appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor:selectedItemTintColor]
             appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: unselectedItemTintColor]
             tabBar.standardAppearance = appearance
-        } else {
-            tabBar.backgroundColor = backgroundColor
-            tabBar.barTintColor = backgroundColor
-            tabBar.tintColor = selectedItemTintColor
-            tabBar.unselectedItemTintColor = unselectedItemTintColor
         }
+        tabBar.backgroundColor = backgroundColor
+        tabBar.barTintColor = backgroundColor
+        tabBar.tintColor = selectedItemTintColor
+        tabBar.unselectedItemTintColor = unselectedItemTintColor
     }
 
     func getTabBarController(for item: MainTabBarItem, tag: Int) -> UIViewController? {

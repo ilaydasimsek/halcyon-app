@@ -1,12 +1,18 @@
 import Foundation
 
-class EntryViewController: ViewController<EntryView, AuthenticationCoordinator> {
-    
-    override init(coordinator: AuthenticationCoordinator) {
-        super.init(coordinator: coordinator)
-        prepareActions()
+class EntryViewController: ViewController<EntryView> {
+    let coordinator: AuthenticationCoordinating
+
+    override var navigatioBarStatus: VisibilityStatus {
+        return .hidden
     }
     
+    init(coordinator: AuthenticationCoordinating) {
+        self.coordinator = coordinator
+        super.init(baseCoordinator: coordinator)
+        prepareActions()
+    }
+
     required init?(coder: NSCoder) {
         fatalError("Application doesn't use storyboard, init(coder:) shouldn't be called")
     }
@@ -14,15 +20,15 @@ class EntryViewController: ViewController<EntryView, AuthenticationCoordinator> 
     private func prepareActions() {
         rootView.loginButton.addTarget(controller: self,
                                        action: #selector(self.onClickLoginButton))
-        rootView.signupButton.addTarget(controller: self,
-                                        action: #selector(self.onClickSignUpButton))
+        rootView.registerButton.addTarget(controller: self,
+                                        action: #selector(self.onClickRegisterButton))
     }
 
     @objc private func onClickLoginButton() {
-        print("Clicked Login")
+        coordinator.startLogin()
     }
 
-    @objc private func onClickSignUpButton() {
-        print("Clicked Sign Up")
+    @objc private func onClickRegisterButton() {
+        coordinator.startRegister()
     }
 }

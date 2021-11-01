@@ -1,10 +1,17 @@
 import UIKit
 
+protocol Coordinatable {
+    var navigationController: UINavigationController { get }
+
+    func setViewController(as controller: UIViewController)
+    func removeChildCoordinator(_ coordinator: Coordinatable)
+}
+
 /**
  Abstract base class for app coordination
  - Warning: Should not be initialized on it's own since it's an abstract class and will throw an error upon use
 */
-class Coordinator: NSObject {
+class Coordinator: NSObject, Coordinatable {
 
     let navigationController: UINavigationController
     let dependencies: CoordinatorDependencies
@@ -29,13 +36,15 @@ class Coordinator: NSObject {
 // MARK: - Child Coordinator Operations
 extension Coordinator {
 
-    final func addChildCoordinator(_ coordinator: Coordinator) {
+    final func addChildCoordinator(_ coordinator: Coordinatable) {
+        guard let coordinator = coordinator as? Coordinator else { return }
         // TODO Make sure add function is always called by throwing an exception
         childCoordinators.append(coordinator)
     }
     
-    final func removeChildCoordinator(_ coordinator: Coordinator) {
-        guard let index = childCoordinators.firstIndex(of: coordinator) else {
+    final func removeChildCoordinator(_ coordinator: Coordinatable) {
+        guard let coordinator = coordinator as? Coordinator,
+              let index = childCoordinators.firstIndex(of: coordinator) else {
             print("Controller does not exist")
             return
         }
@@ -66,7 +75,7 @@ extension Coordinator: UINavigationControllerDelegate {
         guard let controller = controller as? ViewController else {
             preconditionFailure("Controllers must always inherit ViewController class")
         }
-        self.removeChildCoordinator(controller.coordinator)
+        self.removeChildCoordinator(controller.baseCoordinator)
     }
 }
 
