@@ -34,12 +34,18 @@ class AuthTextField: XibView {
     private func prepareView() {
         titleLabel.text = titleText
         titleLabel.font = font
+
         textField.isSecureTextEntry = secure
         textField.layer.borderWidth = 2
         textField.layer.cornerRadius = 12
         textField.clipsToBounds = true
-        
+        textField.returnKeyType = .continue
         setState(.normal)
+    }
+
+    func setTag(_ tag: Int) {
+        self.textField.tag = tag
+        self.tag = tag
     }
 
     override func prepareForInterfaceBuilder() {
@@ -47,11 +53,13 @@ class AuthTextField: XibView {
         prepareView()
     }
 
+    @discardableResult
     override func resignFirstResponder() -> Bool {
         super.resignFirstResponder()
         return textField.resignFirstResponder()
     }
 
+    @discardableResult
     override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder()
         return textField.becomeFirstResponder()
