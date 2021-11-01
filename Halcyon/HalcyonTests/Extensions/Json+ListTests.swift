@@ -1,6 +1,6 @@
 import XCTest
 import SwiftyJSON
-@testable import Magazine
+@testable import Halcyon
 
 struct MockItemModel: Decodable, Equatable {
     let id: Int

@@ -2,7 +2,7 @@ import XCTest
 import Mocker
 import SwiftyJSON
 import Alamofire
-@testable import Magazine
+@testable import Halcyon
 
 class AlamofireNetworkTests: XCTestCase {
     lazy var sessionManager: Session = {

@@ -1,13 +1,6 @@
-//
-//  MagazineUITests.swift
-//  MagazineUITests
-//
-//  Created by İlayda Şimşek on 27.09.2021.
-//
-
 import XCTest
 
-class MagazineUITests: XCTestCase {
+class HalcyonUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
