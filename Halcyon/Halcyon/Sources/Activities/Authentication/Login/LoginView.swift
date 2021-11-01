@@ -9,10 +9,10 @@ class LoginView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        prepareView()
+        setupUI()
     }
 
-    private func prepareView() {
+    private func setupUI() {
         emailTextField.titleText = "Email:"
         passwordTextField.titleText = "Password:"
 
