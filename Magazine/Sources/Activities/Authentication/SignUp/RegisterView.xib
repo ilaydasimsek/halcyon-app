@@ -41,7 +41,7 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aA8-2z-lZX">
-                    <rect key="frame" x="20" y="312.5" width="374" height="271"/>
+                    <rect key="frame" x="20" y="359" width="374" height="178"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-gt-AVN" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="85"/>
@@ -53,13 +53,6 @@
                             <rect key="frame" x="0.0" y="93" width="374" height="85"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Password"/>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="secure" value="YES"/>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27e-Yk-5xf" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="186" width="374" height="85"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Password (Again)"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="secure" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
@@ -76,7 +69,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error text will appear here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHX-q1-eCb">
-                    <rect key="frame" x="109.5" y="603.5" width="195" height="20.5"/>
+                    <rect key="frame" x="109.5" y="557" width="195" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" name="MonzaRed"/>
                     <nil key="highlightedColor"/>
@@ -102,7 +95,6 @@
             <connections>
                 <outlet property="emailTextField" destination="nbs-gt-AVN" id="UYd-Vz-Vn2"/>
                 <outlet property="errorLabel" destination="NHX-q1-eCb" id="91w-ZO-wxA"/>
-                <outlet property="passwordAgainTextField" destination="27e-Yk-5xf" id="WyJ-0K-aNE"/>
                 <outlet property="passwordTextField" destination="NXI-ZY-AzL" id="BQk-gX-0Im"/>
                 <outlet property="registerButton" destination="8Mv-2j-Vkf" id="Lc1-Eu-gkX"/>
             </connections>
@@ -110,9 +102,6 @@
         </view>
     </objects>
     <designables>
-        <designable name="27e-Yk-5xf">
-            <size key="intrinsicContentSize" width="-1" height="85"/>
-        </designable>
         <designable name="NXI-ZY-AzL">
             <size key="intrinsicContentSize" width="-1" height="85"/>
         </designable>

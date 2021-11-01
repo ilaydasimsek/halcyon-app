@@ -22,11 +22,11 @@ class AuthenticationValidator {
         return nil
     }
 
-    static func validatePassword(_ password: String, _ passwordAgain: String) -> ValidationError? {
+    static func validatePassword(_ password: String, checkCharacterCount: Bool = false) -> ValidationError? {
         let minPasswordCharaters: Int = 6
-        if (password != passwordAgain) {
-            return ValidationError(errorText: "Passwords do not match")
-        } else if password.count < minPasswordCharaters {
+        if password.isEmpty {
+            return ValidationError(errorText: "Password can not be empty")
+        } else if checkCharacterCount, password.count < minPasswordCharaters {
             return ValidationError(errorText: "Password should be at least \(minPasswordCharaters) characters")
         }
 

@@ -17,24 +17,64 @@ class LoginViewController: ViewController<LoginView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.prepareActions()
+        self.prepareDelegates()
     }
 
-    private func prepareActions() {
-        rootView.loginButton.addTarget(controller: self, action: #selector(onClickLoginButton))
-    }
-    
     private func handleError(_ error: Error) {
         // TODO Handle firebase login register errors
         coordinator.onError(error)
     }
+}
+
+// MARK: - View preparation and button actions
+extension LoginViewController {
+
+    private func prepareActions() {
+        rootView.loginButton.addTarget(controller: self, action: #selector(onClickLoginButton))
+    }
+
+    private func prepareDelegates() {
+        rootView.emailTextField.delegate = self
+        rootView.passwordTextField.delegate = self
+    }
 
     @objc func onClickLoginButton() {
+        guard validateFields() else { return }
         fetcher.login(email: rootView.emailTextField.value,
                       password: rootView.passwordTextField.value)
             .done({ [weak self] auth in
                 self?.coordinator.onLoginCompleted()
             }).catch({ [weak self] error in
-                self?.coordinator.onError(error)
+                self?.handleError(error)
             })
+    }
+
+    private func validateFields() -> Bool {
+        var errorTexts: [String] = []
+        let email = rootView.emailTextField.value
+        let password = rootView.passwordTextField.value
+
+        if let error = AuthenticationValidator.validateEmail(email) {
+            rootView.setError(to: rootView.emailTextField)
+            errorTexts.append(error.errorText)
+        }
+        
+        if let error = AuthenticationValidator.validatePassword(password) {
+            rootView.setError(to: rootView.passwordTextField)
+            errorTexts.append(error.errorText)
+        }
+
+        if errorTexts.count > 0 {
+            rootView.setErrorText(errorTexts[0])
+            return false
+        }
+
+        return true
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        rootView.clearErrors()
     }
 }

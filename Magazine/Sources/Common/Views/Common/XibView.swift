@@ -4,12 +4,17 @@ import UIKit
 class XibView: UIView {
     var contentView: UIView?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-         xibSetup()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
     }
 
-    func xibSetup() {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+
+    func commonInit() {
         guard let view = loadViewFromNib() else { return }
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -31,7 +36,7 @@ class XibView: UIView {
 //            preconditionFailure("Content View must not be null")
 //        }
 
-        xibSetup()
+        commonInit()
         contentView?.layer.cornerRadius = 30
         contentView?.prepareForInterfaceBuilder()
     }

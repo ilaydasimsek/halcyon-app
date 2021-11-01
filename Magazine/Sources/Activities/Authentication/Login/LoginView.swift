@@ -1,14 +1,14 @@
 import UIKit
 
-// TODO add focus change on enter and keyboard close on tapping outside
+// TODO add focus change on enter
 class LoginView: UIView {
     @IBOutlet weak var emailTextField: AuthTextField!
     @IBOutlet weak var passwordTextField: AuthTextField!
     @IBOutlet weak var loginButton: BasicButton!
     @IBOutlet weak var errorLabel: UILabel!
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override func awakeFromNib() {
+        super.awakeFromNib()
         prepareView()
     }
 
@@ -17,16 +17,23 @@ class LoginView: UIView {
         passwordTextField.titleText = "Password:"
 
         errorLabel.font = UIFont.regular14
-        clearError()
+        clearErrors()
     }
 
-    func setError(text: String) {
+    func setError(to field: AuthTextField) {
+        field.setState(.error)
+    }
+
+    func setErrorText(_ text: String) {
         errorLabel.text = text
         errorLabel.isHidden = false
     }
 
-    func clearError() {
+    func clearErrors() {
         errorLabel.text = ""
         errorLabel.isHidden = true
+
+        emailTextField.setState(.normal)
+        passwordTextField.setState(.normal)
     }
 }

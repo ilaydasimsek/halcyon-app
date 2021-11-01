@@ -5,7 +5,7 @@ class UserServiceTests: XCTestCase {
     // TODO add cases to test model creation and sending requests
     let networking: Networking = AlamofireNetwork()
 
-    func testProfileRequest_Correctness() {
+    func test_ProfileRequest_Correctness() {
         let mockUserId = "123456"
         let request = UserService.profile(userId: mockUserId)
         
@@ -15,7 +15,7 @@ class UserServiceTests: XCTestCase {
         XCTAssertEqual(request.path, "user/\(mockUserId)")
     }
 
-    func testLoginRequest_Correctness() {
+    func test_LoginRequest_Correctness() {
         let mockEmail = "test_user@email.com"
         let mockPassword = "password"
         let request = UserService.login(email: mockEmail, password: mockPassword)
@@ -26,15 +26,14 @@ class UserServiceTests: XCTestCase {
         XCTAssertEqual(request.path, "login")
     }
 
-    func testRegisterRequest_Correctness() {
+    func test_RegisterRequest_Correctness() {
         let mockEmail = "test_user@email.com"
         let mockPassword = "password"
-        let mockPasswordAgain = "passwordAgain"
-        let request = UserService.register(email: mockEmail, password: mockPassword, passwordAgain: mockPasswordAgain)
+        let request = UserService.register(email: mockEmail, password: mockPassword)
         
         XCTAssertEqual(request.baseUrl, NetworkingConstants.baseUrl)
         XCTAssertEqual(request.method, .post)
-        XCTAssertEqual(request.parameters, ["email": mockEmail, "password": mockPassword, "password_again": mockPasswordAgain])
+        XCTAssertEqual(request.parameters, ["email": mockEmail, "password": mockPassword])
         XCTAssertEqual(request.path, "register")
     }
 

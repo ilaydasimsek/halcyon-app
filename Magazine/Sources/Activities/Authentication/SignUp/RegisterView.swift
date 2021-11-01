@@ -3,31 +3,37 @@ import UIKit
 class RegisterView: UIView {
     @IBOutlet weak var emailTextField: AuthTextField!
     @IBOutlet weak var passwordTextField: AuthTextField!
-    @IBOutlet weak var passwordAgainTextField: AuthTextField!
     @IBOutlet weak var registerButton: BasicButton!
     @IBOutlet weak var errorLabel: UILabel!
+
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override func awakeFromNib() {
+        super.awakeFromNib()
         prepareView()
     }
 
     private func prepareView() {
         emailTextField.titleText = "Email:"
         passwordTextField.titleText = "Password:"
-        passwordAgainTextField.titleText = "Password (Again):"
 
         errorLabel.font = UIFont.regular14
-        clearError()
+        clearErrors()
     }
 
-    func setError(text: String) {
+    func setError(to field: AuthTextField) {
+        field.setState(.error)
+    }
+
+    func setErrorText(_ text: String) {
         errorLabel.text = text
         errorLabel.isHidden = false
     }
 
-    func clearError() {
+    func clearErrors() {
         errorLabel.text = ""
         errorLabel.isHidden = true
+
+        emailTextField.setState(.normal)
+        passwordTextField.setState(.normal)
     }
 }
