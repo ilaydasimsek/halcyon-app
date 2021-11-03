@@ -45,8 +45,8 @@ extension Coordinator {
     final func removeChildCoordinator(_ coordinator: Coordinatable) {
         guard let coordinator = coordinator as? Coordinator,
               let index = childCoordinators.firstIndex(of: coordinator) else {
-            print("Controller does not exist")
-            return
+                  CustomLogger.logError("Could not remove child coordinator. Coordinator does not exist")
+                  return
         }
         childCoordinators.remove(at: index)
     }
