@@ -3,7 +3,7 @@ import UIKit
 protocol AuthenticationCoordinating where Self: Coordinator {
     func startLogin()
     func startRegister()
-    func onLoginCompleted()
+    func onLoginCompleted(fromRegister: Bool)
     func onError(_ error: Error)
 }
 
@@ -38,7 +38,12 @@ class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
         self.navigationController.pushViewController(controller, animated: true)
     }
 
-    func onLoginCompleted() {
+    func onLoginCompleted(fromRegister: Bool = false) {
+        if (fromRegister) {
+            AnalyticsEventLogger.register()
+        } else {
+            AnalyticsEventLogger.login()
+        }
         self.onComplete?(true)
     }
 

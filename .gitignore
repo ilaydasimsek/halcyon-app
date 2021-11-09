@@ -63,3 +63,6 @@ Carthage/Build/
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# Firebase
+GoogleService-Info.plist
