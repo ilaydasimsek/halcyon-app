@@ -73,7 +73,7 @@ extension RegisterViewController {
         fetcher.register(email: rootView.emailTextField.value,
                        password: rootView.passwordTextField.value)
             .done({ [weak self] auth in
-                self?.coordinator.onLoginCompleted()
+                self?.coordinator.onLoginCompleted(fromRegister: true)
             }).catch({ [weak self] error in
                 self?.handleError(error)
             })

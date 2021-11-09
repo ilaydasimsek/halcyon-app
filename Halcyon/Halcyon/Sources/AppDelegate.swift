@@ -1,5 +1,5 @@
-
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -8,7 +8,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let dependencyContainer = DependencyContainer()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame:UIScreen.main.bounds)
+
+        configureFirebase()
+        configureWindow()
+        return true
+    }
+
+    func configureFirebase() {
+        FirebaseApp.configure()
+    }
+
+    func configureWindow() {
+        window = UIWindow(frame:UIScreen.main.bounds)    
         let navigationController = NavigationController()
         navigationController.setNavigationBarHidden(true, animated: false)
 
@@ -18,8 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator = AppCoordinator(navigationController: navigationController,
                                         dependencies: dependencyContainer)
         appCoordinator?.start()
-
-        return true
     }
 }
 
