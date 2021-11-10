@@ -18,43 +18,43 @@ class AlamofireNetworkTests: XCTestCase {
         self.networking =  AlamofireNetwork(sessionManager: sessionManager)
     }
     
-    func testGetRequest_Success() {
+    func test_GetRequest_Success() {
         testRequestWithoutBody(with: MockService.getRequest, fail: false)
     }
     
-    func testGetRequest_Fail() {
+    func test_GetRequest_Fail() {
         testRequestWithoutBody(with: MockService.getRequest, fail: true)
     }
     
-    func testPostRequest_Success() {
+    func test_PostRequest_Success() {
         self.testRequestWithBody(with: MockService.postRequest, fail: false)
     }
     
-    func testPostRequest_Fail() {
+    func test_PostRequest_Fail() {
         self.testRequestWithBody(with: MockService.postRequest, fail: true)
     }
     
-    func testDeleteRequest_Success() {
+    func test_DeleteRequest_Success() {
         self.testRequestWithoutBody(with: MockService.deleteRequest, fail: false)
     }
     
-    func testDeleteRequest_Fail() {
+    func test_DeleteRequest_Fail() {
         self.testRequestWithoutBody(with: MockService.deleteRequest, fail: true)
     }
     
-    func testPutRequest_Success() {
+    func test_PutRequest_Success() {
         self.testRequestWithBody(with: MockService.putRequest, fail: false)
     }
     
-    func testPutRequest_Fail() {
+    func test_PutRequest_Fail() {
         self.testRequestWithBody(with: MockService.putRequest, fail: true)
     }
     
-    func testPatchRequest_Success() {
+    func test_PatchRequest_Success() {
         self.testRequestWithBody(with: MockService.patchRequest, fail: false)
     }
     
-    func testPatchRequest_Fail() {
+    func test_PatchRequest_Fail() {
         self.testRequestWithBody(with: MockService.patchRequest, fail: true)
     }
 }

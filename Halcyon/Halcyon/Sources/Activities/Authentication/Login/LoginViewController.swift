@@ -36,7 +36,9 @@ extension LoginViewController {
     }
 
     private func prepareActions() {
-        rootView.loginButton.addTarget(controller: self, action: #selector(onClickLoginButton))
+        rootView.loginButton.addTarget(self,
+                                       action: #selector(onClickLoginButton),
+                                       for: .touchUpInside)
     }
 
     private func prepareDelegates() {

@@ -60,7 +60,9 @@ extension RegisterViewController {
     }
 
     private func prepareActions() {
-        rootView.registerButton.addTarget(controller: self, action: #selector(onClickRegisterButton))
+        rootView.registerButton.addTarget(self,
+                                          action: #selector(onClickRegisterButton),
+                                          for: .touchUpInside)
     }
 
     private func prepareDelegates() {
