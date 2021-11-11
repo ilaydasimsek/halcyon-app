@@ -1,8 +1,9 @@
 import express, { Application } from "express";
 import { initFirebaseAdmin } from "./util/firebase";
-const app: Application = express();
-const PORT = process.env.PORT || 8000;
+import config from "config";
 
+const app: Application = express();
+const PORT = config.get("server.port") || 3000;
 initFirebaseAdmin();
 
 app.listen(PORT, (): void => {

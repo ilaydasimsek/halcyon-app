@@ -5,21 +5,25 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node ./src/index.ts",
-    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "dev": "NODE_ENV=development ts-node-dev --respawn ./src/index.ts",
+    "prod": "NODE_ENV=production ts-node-dev --respawn ./src/index.ts",
     "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/config": "^0.0.40",
     "@types/express": "^4.17.13",
     "@types/node": "^16.11.7",
     "prettier": "2.4.1",
     "ts-node": "^10.4.0",
-    "ts-node-dev": "^1.1.8"
+    "ts-node-dev": "^1.1.8",
+    "win-node-env": "^0.4.0"
   },
   "dependencies": {
     "@firebase/auth": "^0.19.2",
+    "config": "^3.3.6",
     "express": "^4.17.1",
     "firebase": "^9.4.0",
     "firebase-admin": "^10.0.0"
