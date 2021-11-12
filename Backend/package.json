@@ -18,8 +18,7 @@
     "@types/node": "^16.11.7",
     "prettier": "2.4.1",
     "ts-node": "^10.4.0",
-    "ts-node-dev": "^1.1.8",
-    "win-node-env": "^0.4.0"
+    "ts-node-dev": "^1.1.8"
   },
   "dependencies": {
     "@firebase/auth": "^0.19.2",
