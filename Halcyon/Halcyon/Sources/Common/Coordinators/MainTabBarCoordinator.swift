@@ -1,6 +1,6 @@
 import UIKit
 
-protocol MainTabBarCoodinating where Self: Coordinator {
+protocol MainTabBarCoodinating where Self: Coordinatable {
     func getTabBarController(for item: MainTabBarItem) -> UIViewController
 }
 

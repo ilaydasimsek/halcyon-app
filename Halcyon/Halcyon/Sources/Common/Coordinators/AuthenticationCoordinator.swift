@@ -1,6 +1,6 @@
 import UIKit
 
-protocol AuthenticationCoordinating where Self: Coordinator {
+protocol AuthenticationCoordinating where Self: Coordinatable {
     func startLogin()
     func startRegister()
     func onLoginCompleted(fromRegister: Bool)
