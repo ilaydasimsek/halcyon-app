@@ -25,7 +25,7 @@ class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
     }
 
     override func start() {
-        self.setViewController(as: dependencies.makeEntryViewController(coordinator: self))
+        self.setViewController(as: dependencies.makeEntryViewController(coordinator: self), animated: true)
     }
 
     func startLogin() {

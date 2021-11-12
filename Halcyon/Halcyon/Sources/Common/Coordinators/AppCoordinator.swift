@@ -3,7 +3,7 @@ import SwiftyJSON
 
 /// Main coordinator of application, will start the application depending on user state.
 final class AppCoordinator: Coordinator {
-    let loggedIn: Bool = false // TODO add real logged in logic
+    let loggedIn: Bool = true // TODO add real logged in logic
 
     lazy var authenticationCoordinator: AuthenticationCoordinating = {
         return AuthenticationCoordinator(navigationController: self.navigationController,
@@ -15,6 +15,11 @@ final class AppCoordinator: Coordinator {
         return MainTabBarCoodinator(navigationController: self.navigationController,
                                     dependencies: self.dependencies)
     }()
+
+    override init(navigationController: UINavigationController, dependencies: CoordinatorDependencies) {
+        super.init(navigationController: navigationController, dependencies: dependencies)
+        self.setupNotifications()
+    }
 
     override func start() {
         if (loggedIn) {
@@ -42,5 +47,23 @@ final class AppCoordinator: Coordinator {
             self.startAuthentication()
         }
     }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
+// MARK: - Coordinator Setup
+extension AppCoordinator {
+
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                            selector: #selector(onUserUnauthorized),
+                                            name: NotificationConstants.userUnauthorized,
+                                            object: nil)
+    }
+
+    @objc func onUserUnauthorized() {
+        self.startAuthentication()
+    }
+}

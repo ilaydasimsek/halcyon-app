@@ -4,7 +4,7 @@ import OSLog
 protocol Coordinatable {
     var navigationController: UINavigationController { get }
 
-    func setViewController(as controller: UIViewController)
+    func setViewController(as controller: UIViewController, animated: Bool)
     func removeChildCoordinator(_ coordinator: Coordinatable)
 }
 
@@ -29,7 +29,15 @@ class Coordinator: NSObject, Coordinatable {
     }
 
 
-    func setViewController(as controller: UIViewController) {
+    func setViewController(as controller: UIViewController, animated: Bool) {
+        if animated {
+            let transition = CATransition()
+            transition.duration = 0.3
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            transition.type = CATransitionType.fade
+            self.navigationController.view.layer.add(transition, forKey: nil)
+        }
+
         self.navigationController.setViewControllers([controller], animated: false)
     }
 }
