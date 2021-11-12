@@ -1,6 +1,5 @@
 import UIKit
 
-// TODO add focus change on enter
 class LoginView: UIView {
     @IBOutlet weak var emailTextField: AuthTextField!
     @IBOutlet weak var passwordTextField: AuthTextField!

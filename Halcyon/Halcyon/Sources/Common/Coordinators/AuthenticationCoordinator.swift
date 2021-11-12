@@ -4,7 +4,7 @@ protocol AuthenticationCoordinating where Self: Coordinator {
     func startLogin()
     func startRegister()
     func onLoginCompleted(fromRegister: Bool)
-    func onError(_ error: Error)
+    func onError(_ error: RequestError)
 }
 
 class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
@@ -48,8 +48,8 @@ class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
     }
 
     // TODO handle error with custom dialogs properly
-    func onError(_ error: Error) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+    func onError(_ error: RequestError) {
+        let alert = UIAlertController(title: "Error", message: error.message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.navigationController.present(alert, animated: true, completion: nil)
     }

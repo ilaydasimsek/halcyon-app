@@ -21,7 +21,7 @@ class LoginViewController: ViewController<LoginView> {
         prepareDelegates()
     }
 
-    private func handleError(_ error: Error) {
+    private func handleError(_ error: RequestError) {
         // TODO Handle firebase login register errors
         coordinator.onError(error)
     }
@@ -51,10 +51,15 @@ extension LoginViewController {
             .done({ [weak self] auth in
                 self?.coordinator.onLoginCompleted(fromRegister: false)
             }).catch({ [weak self] error in
-                self?.handleError(error)
+                if let error = error as? RequestError {
+                    self?.handleError(error)
+                }
             })
     }
+}
 
+private extension LoginViewController {
+    
     private func validateFields() -> Bool {
         var errorTexts: [String] = []
         let email = rootView.emailTextField.value
@@ -79,6 +84,7 @@ extension LoginViewController {
     }
 }
 
+// MARK: - Text Field Delegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         rootView.clearErrors()

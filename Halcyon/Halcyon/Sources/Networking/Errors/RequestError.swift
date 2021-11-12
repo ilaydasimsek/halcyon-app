@@ -14,4 +14,9 @@ enum RequestError: Error {
             return "Something went wrong"
         }
     }
+
+    static func from(_ error: Error) -> RequestError {
+        return .unknownError
+    }
+    
 }
