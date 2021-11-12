@@ -4,8 +4,7 @@ import OSLog
 protocol Coordinatable {
     var navigationController: UINavigationController { get }
 
-    func setViewController(as controller: UIViewController, animated: Bool)
-    func removeChildCoordinator(_ coordinator: Coordinatable)
+    func start()
 }
 
 /**

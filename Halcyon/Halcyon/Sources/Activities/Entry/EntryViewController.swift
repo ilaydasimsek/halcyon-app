@@ -10,18 +10,24 @@ class EntryViewController: ViewController<EntryView> {
     init(coordinator: AuthenticationCoordinating) {
         self.coordinator = coordinator
         super.init(baseCoordinator: coordinator)
-        prepareActions()
     }
 
     required init?(coder: NSCoder) {
         fatalError("Application doesn't use storyboard, init(coder:) shouldn't be called")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        prepareActions()
+    }
+    
     private func prepareActions() {
-        rootView.loginButton.addTarget(controller: self,
-                                       action: #selector(self.onClickLoginButton))
-        rootView.registerButton.addTarget(controller: self,
-                                        action: #selector(self.onClickRegisterButton))
+        rootView.loginButton.addTarget(self,
+                                       action: #selector(self.onClickLoginButton),
+                                       for: .touchUpInside)
+        rootView.registerButton.addTarget(self,
+                                          action: #selector(self.onClickRegisterButton),
+                                          for: .touchUpInside)
     }
 
     @objc private func onClickLoginButton() {
