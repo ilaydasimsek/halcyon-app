@@ -6,6 +6,7 @@ import {
 } from "@firebase/auth";
 import { FirebaseUserDTO } from "../types/firebase-user.types";
 import { initializeApp } from "firebase/app";
+import log from "loglevel";
 
 export const initFirebaseAdmin = () => {
   try {
@@ -17,7 +18,7 @@ export const initFirebaseAdmin = () => {
     });
     initializeApp(firebaseCredentials);
   } catch (e) {
-    console.error(e);
+    log.error(`Could not initialized firebase: ${e}`);
     process.exit(1);
   }
 };
@@ -27,5 +28,9 @@ export const signUp = (user: FirebaseUserDTO) => {
     getAuth(),
     user.email,
     user.password
-  ).then((userCredentials) => sendEmailVerification(userCredentials.user));
+  ).then((userCredentials) =>
+    sendEmailVerification(userCredentials.user).catch((e) =>
+      log.error(`Could not send verification email: ${e}`)
+    )
+  );
 };
