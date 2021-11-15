@@ -8,9 +8,9 @@ struct Authentication: Decodable {
     static func decode(_ data: Data) throws -> Authentication {
         let json = try data.asJson()
         return Authentication(
-            userId: "",
-            email: "",
-            accessToken: ""
+            userId: json["uid"].stringValue,
+            email: json["email"].stringValue,
+            accessToken: json["uid"].stringValue
         )
     }
 }

@@ -7,6 +7,10 @@ class Fetcher {
     var networking: Networking {
         return dependencies.networking
     }
+    
+    var auth: Authenticating {
+        return dependencies.auth
+    }
 
     init(dependencies: FetcherDependencies) {
         self.dependencies = dependencies

@@ -9,12 +9,10 @@ protocol AuthenticationFetching {
 class AuthenticationFetcher: Fetcher, AuthenticationFetching {
 
     func login(email: String, password: String) -> Promise<Authentication> {
-        return self.networking.decodedRequest(UserService.login(email: email,
-                                                                password: password))
+        return auth.login(email: email, password: password)
     }
 
     func register(email: String, password: String) -> Promise<Authentication> {
-        return self.networking.decodedRequest(UserService.register(email: email,
-                                                                   password: password))
+        return auth.register(email: email, password: password)
     }
 }
