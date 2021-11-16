@@ -4,7 +4,7 @@ class ProfileView: UIView {
     @IBOutlet weak var screenNameLabel: UILabel!
 
     @IBAction func onButtonClick(_ sender: Any) {
-        NotificationCenter.default.post(name: NotificationConstants.authStateChanged, object: nil, userInfo: [:])
+        FirebaseAuthenticator().logout()
     }
 
     func setup(with profile: Profile) {

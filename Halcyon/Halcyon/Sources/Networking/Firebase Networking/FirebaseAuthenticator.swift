@@ -1,6 +1,7 @@
 import Foundation
 import PromiseKit
 import FirebaseAuth
+import OSLog
 
 protocol Authenticating {
     var authenticated: Bool { get }
@@ -11,6 +12,7 @@ protocol Authenticating {
 
 class FirebaseAuthenticator: Authenticating {
     let authStateChangeListener: AuthStateDidChangeListenerHandle
+    let firebaseAuth = Auth.auth()
     var authenticated: Bool {
         return Auth.auth().currentUser != nil
     }
@@ -25,7 +27,7 @@ class FirebaseAuthenticator: Authenticating {
 
     func login(email: String, password: String) -> Promise<Authentication> {
         return Promise { promiseSeal in
-            Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
                 self?.handleAuthResult(authResult, error: error, promiseSeal: promiseSeal)
             }
         }
@@ -33,9 +35,20 @@ class FirebaseAuthenticator: Authenticating {
 
     func register(email: String, password: String) -> Promise<Authentication> {
         return Promise { promiseSeal in
-            Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+            firebaseAuth.createUser(withEmail: email, password: password) { [weak self] authResult, error in
                 self?.handleAuthResult(authResult, error: error, promiseSeal: promiseSeal)
             }
+        }
+    }
+
+    @discardableResult
+    func logout() -> Bool {
+        do {
+            try firebaseAuth.signOut()
+            return true
+        } catch let signOutError as NSError {
+            Logger().log(level: .error, "Error signing out: \(signOutError)")
+            return false
         }
     }
 

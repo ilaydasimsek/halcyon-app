@@ -54,7 +54,11 @@ extension LoginViewController {
                 self?.coordinator.onLoginCompleted(fromRegister: false)
             }).catch({ [weak self] error in
                 if let error = error as? RequestError {
-                    self?.handleError(error)
+                    if case .authError(let authError) = error {
+                        self?.rootView.setErrorText(authError.message)
+                    } else {
+                        self?.handleError(error)
+                    }
                 }
             })
     }
