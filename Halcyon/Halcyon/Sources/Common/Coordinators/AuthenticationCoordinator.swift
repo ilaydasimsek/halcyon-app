@@ -8,11 +8,11 @@ protocol AuthenticationCoordinating where Self: Coordinatable {
 }
 
 class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
-    var onComplete: ((_ success: Bool) -> Void)?
+    var onComplete: (() -> Void)?
 
     convenience init(navigationController: UINavigationController,
          dependencies: CoordinatorDependencies,
-                     onComplete: ((_ success: Bool) -> Void)?) {
+                     onComplete: (() -> Void)?) {
         self.init(navigationController: navigationController,
                    dependencies: dependencies)
         self.onComplete = onComplete
@@ -44,7 +44,7 @@ class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
         } else {
             AnalyticsEventLogger.login()
         }
-        self.onComplete?(true)
+        self.onComplete?()
     }
 
     // TODO handle error with custom dialogs properly

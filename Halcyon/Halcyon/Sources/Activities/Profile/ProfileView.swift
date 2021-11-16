@@ -4,7 +4,7 @@ class ProfileView: UIView {
     @IBOutlet weak var screenNameLabel: UILabel!
 
     @IBAction func onButtonClick(_ sender: Any) {
-        NotificationCenter.default.post(name: NotificationConstants.userUnauthorized, object: nil, userInfo: [:])
+        NotificationCenter.default.post(name: NotificationConstants.authStateChanged, object: nil, userInfo: [:])
     }
 
     func setup(with profile: Profile) {

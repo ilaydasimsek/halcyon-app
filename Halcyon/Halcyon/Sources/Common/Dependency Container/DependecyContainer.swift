@@ -1,4 +1,4 @@
-typealias CoordinatorDependencies = ViewControllerFactory
+typealias CoordinatorDependencies = ViewControllerFactory & Networkable
 typealias FetcherDependencies = Networkable
 
 protocol Networkable {
@@ -9,5 +9,5 @@ protocol Networkable {
 class DependencyContainer: Networkable {
 
     let networking: Networking = AlamofireNetwork()
-    let auth: Authenticating = AuthService()
+    let auth: Authenticating = FirebaseAuthenticator()
 }

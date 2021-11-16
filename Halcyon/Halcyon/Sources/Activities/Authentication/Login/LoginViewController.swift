@@ -50,7 +50,7 @@ extension LoginViewController {
         guard validateFields() else { return }
         fetcher.login(email: rootView.emailTextField.value,
                       password: rootView.passwordTextField.value)
-            .done({ [weak self] auth in
+            .done({ [weak self] _ in
                 self?.coordinator.onLoginCompleted(fromRegister: false)
             }).catch({ [weak self] error in
                 if let error = error as? RequestError {

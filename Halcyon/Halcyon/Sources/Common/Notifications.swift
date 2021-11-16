@@ -1,5 +1,5 @@
 import Foundation
 
 struct NotificationConstants {
-    static let userUnauthorized = Notification.Name(rawValue: "NOTIFICATION_USER_UNAUTHORIZED")
+    static let authStateChanged = Notification.Name(rawValue: "USER_AUTH_STATE_CHANGED")
 }
