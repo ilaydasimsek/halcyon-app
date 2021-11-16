@@ -8,7 +8,7 @@ class MainTabBarCoodinator: Coordinator, MainTabBarCoodinating {
 
     override func start() {
         let mainTabBarController = MainTabBarController(coordinator: self)
-        self.setViewController(as: mainTabBarController)
+        self.setViewController(as: mainTabBarController, animated: true)
     }
 
     func getTabBarController(for item: MainTabBarItem) -> UIViewController {

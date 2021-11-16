@@ -1,4 +1,5 @@
 import Foundation
+import FirebaseAuth
 
 struct Authentication: Decodable {
     let userId: String
@@ -8,9 +9,13 @@ struct Authentication: Decodable {
     static func decode(_ data: Data) throws -> Authentication {
         let json = try data.asJson()
         return Authentication(
-            userId: "",
-            email: "",
-            accessToken: ""
+            userId: json["uid"].stringValue,
+            email: json["email"].stringValue,
+            accessToken: json["uid"].stringValue
         )
+    }
+
+    static func decodeFromFirebaseUser(_ user: User) -> Authentication {
+        return Authentication(userId: user.uid, email: user.email ?? "", accessToken: user.uid)
     }
 }

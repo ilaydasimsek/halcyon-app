@@ -22,7 +22,7 @@ class RegisterViewController: ViewController<RegisterView> {
         prepareDelegates()
     }
 
-    private func handleError(_ error: Error) {
+    private func handleError(_ error: RequestError) {
         // TODO Handle firebase login register errors
         coordinator.onError(error)
     }
@@ -77,7 +77,9 @@ extension RegisterViewController {
             .done({ [weak self] auth in
                 self?.coordinator.onLoginCompleted(fromRegister: true)
             }).catch({ [weak self] error in
-                self?.handleError(error)
+                if let error = error as? RequestError {
+                    self?.handleError(error)
+                }
             })
     }
 }

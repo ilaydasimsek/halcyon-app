@@ -4,15 +4,15 @@ protocol AuthenticationCoordinating where Self: Coordinatable {
     func startLogin()
     func startRegister()
     func onLoginCompleted(fromRegister: Bool)
-    func onError(_ error: Error)
+    func onError(_ error: RequestError)
 }
 
 class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
-    var onComplete: ((_ success: Bool) -> Void)?
+    var onComplete: (() -> Void)?
 
     convenience init(navigationController: UINavigationController,
          dependencies: CoordinatorDependencies,
-                     onComplete: ((_ success: Bool) -> Void)?) {
+                     onComplete: (() -> Void)?) {
         self.init(navigationController: navigationController,
                    dependencies: dependencies)
         self.onComplete = onComplete
@@ -25,7 +25,7 @@ class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
     }
 
     override func start() {
-        self.setViewController(as: dependencies.makeEntryViewController(coordinator: self))
+        self.setViewController(as: dependencies.makeEntryViewController(coordinator: self), animated: true)
     }
 
     func startLogin() {
@@ -44,12 +44,12 @@ class AuthenticationCoordinator: Coordinator, AuthenticationCoordinating {
         } else {
             AnalyticsEventLogger.login()
         }
-        self.onComplete?(true)
+        self.onComplete?()
     }
 
     // TODO handle error with custom dialogs properly
-    func onError(_ error: Error) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+    func onError(_ error: RequestError) {
+        let alert = UIAlertController(title: "Error", message: error.message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.navigationController.present(alert, animated: true, completion: nil)
     }
