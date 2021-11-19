@@ -24,7 +24,7 @@ class XibView: UIView {
 
     func loadViewFromNib() -> UIView? {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: Self.nibIdentifier, bundle: bundle)
+        let nib = UINib(nibName: Self.nibName, bundle: bundle)
         return nib.instantiate(
                     withOwner: self,
                     options: nil).first as? UIView

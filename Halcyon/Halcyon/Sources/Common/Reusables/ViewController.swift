@@ -64,7 +64,7 @@ class ViewController<T: UIView>: UIViewController {
      Creates a nib from using the type (T) of specified view.
      */
     init(baseCoordinator: Coordinatable) {
-        guard let nibView = Bundle.main.loadNibNamed(T.nibIdentifier, owner: nil)?.first as? T else {
+        guard let nibView = Bundle.main.loadNibNamed(T.nibName, owner: nil)?.first as? T else {
             fatalError("Nib \(T.self) can't be loaded")
         }
         rootView = nibView

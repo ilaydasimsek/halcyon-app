@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,24 +22,35 @@
                     <color key="textColor" name="Default Text Color"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLX-Dl-ZMt">
-                    <rect key="frame" x="174" y="566" width="67" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLX-Dl-ZMt">
+                    <rect key="frame" x="172.5" y="64" width="69.5" height="31"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Logout">
+                        <color key="baseForegroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </buttonConfiguration>
                     <connections>
                         <action selector="onButtonClick:" destination="Gwq-GJ-C4o" eventType="touchUpInside" id="QaL-6L-R5E"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Osk-Wr-4Km">
+                    <rect key="frame" x="8" y="103" width="398" height="751"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="mQ7-rc-fra"/>
             <color key="backgroundColor" name="Default Background Color"/>
             <constraints>
+                <constraint firstItem="bLX-Dl-ZMt" firstAttribute="centerX" secondItem="Gwq-GJ-C4o" secondAttribute="centerX" id="At4-Nm-Sfa"/>
+                <constraint firstItem="Osk-Wr-4Km" firstAttribute="top" secondItem="bLX-Dl-ZMt" secondAttribute="bottom" constant="8" id="EPG-y7-rvz"/>
                 <constraint firstItem="gql-zk-JRv" firstAttribute="centerY" secondItem="Gwq-GJ-C4o" secondAttribute="centerY" id="Ika-Y3-96I"/>
+                <constraint firstItem="mQ7-rc-fra" firstAttribute="trailing" secondItem="Osk-Wr-4Km" secondAttribute="trailing" constant="8" id="Mxw-A0-RNC"/>
+                <constraint firstItem="mQ7-rc-fra" firstAttribute="bottom" secondItem="Osk-Wr-4Km" secondAttribute="bottom" constant="8" id="PQf-MU-2z7"/>
                 <constraint firstItem="gql-zk-JRv" firstAttribute="centerX" secondItem="Gwq-GJ-C4o" secondAttribute="centerX" id="gww-Tg-8lb"/>
+                <constraint firstItem="bLX-Dl-ZMt" firstAttribute="top" secondItem="mQ7-rc-fra" secondAttribute="top" constant="20" id="p9C-4j-6xF"/>
+                <constraint firstItem="Osk-Wr-4Km" firstAttribute="leading" secondItem="mQ7-rc-fra" secondAttribute="leading" constant="8" id="uYd-eo-GMg"/>
             </constraints>
             <connections>
-                <outlet property="screenNameLabel" destination="gql-zk-JRv" id="hOk-P9-cxE"/>
+                <outlet property="tableView" destination="Osk-Wr-4Km" id="7YD-Sp-gfE"/>
             </connections>
             <point key="canvasLocation" x="87" y="48"/>
         </view>
@@ -50,5 +62,8 @@
         <namedColor name="Default Text Color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
