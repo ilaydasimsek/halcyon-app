@@ -7,6 +7,7 @@ protocol TableViewProviderDelegate: AnyObject {
 
     func loadMore()
     func itemAt(indexPath: IndexPath) -> UITableViewCell
+    func onCellClick(at indexPath: IndexPath)
 }
 
 extension TableViewProviderDelegate {
@@ -53,8 +54,7 @@ extension TableViewDataProdiver: UITableViewDataSource, UITableViewDataSourcePre
 extension TableViewDataProdiver: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ClickableCell else { return }
-        cell.onCellClick()
+        delegate?.onCellClick(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

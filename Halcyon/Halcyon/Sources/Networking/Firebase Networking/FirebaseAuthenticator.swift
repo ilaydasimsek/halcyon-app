@@ -7,7 +7,7 @@ protocol Authenticating {
     var authenticated: Bool { get }
     func login(email: String, password: String) -> Promise<Authentication>
     func register(email: String, password: String) -> Promise<Authentication>
-    
+    func logout() -> Bool
 }
 
 class FirebaseAuthenticator: Authenticating {

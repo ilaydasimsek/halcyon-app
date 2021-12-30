@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="seh-8V-n9z" customClass="LoginView" customModule="Magazine" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="seh-8V-n9z" customClass="LoginView" customModule="Halcyon" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -40,16 +39,16 @@
                         <constraint firstAttribute="bottom" secondItem="5an-xl-CeK" secondAttribute="bottom" id="zvy-Au-CAj"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7dj-rL-AHV">
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7dj-rL-AHV">
                     <rect key="frame" x="20" y="359" width="374" height="178"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lxs-TQ-2Sf" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lxs-TQ-2Sf" customClass="AuthTextField" customModule="Halcyon" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="85"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Email"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZz-hP-ChV" customClass="AuthTextField" customModule="Magazine" customModuleProvider="target">
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IZz-hP-ChV" customClass="AuthTextField" customModule="Halcyon" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="93" width="374" height="85"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Password"/>
@@ -58,7 +57,7 @@
                         </view>
                     </subviews>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aT5-Ad-NvP" customClass="BasicButton" customModule="Magazine" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aT5-Ad-NvP" customClass="BasicButton" customModule="Halcyon" customModuleProvider="target">
                     <rect key="frame" x="20" y="784" width="374" height="58"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
@@ -68,7 +67,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="buttonTitle" value="Login"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error text will appear here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sle-dC-9FT">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Error text will appear here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sle-dC-9FT">
                     <rect key="frame" x="109.5" y="557" width="195" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" name="MonzaRed"/>
@@ -100,14 +99,6 @@
             <point key="canvasLocation" x="-555.07246376811599" y="-110.49107142857143"/>
         </view>
     </objects>
-    <designables>
-        <designable name="IZz-hP-ChV">
-            <size key="intrinsicContentSize" width="-1" height="85"/>
-        </designable>
-        <designable name="Lxs-TQ-2Sf">
-            <size key="intrinsicContentSize" width="-1" height="85"/>
-        </designable>
-    </designables>
     <resources>
         <image name="entry_background" width="1280" height="1920"/>
         <namedColor name="Black">
