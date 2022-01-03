@@ -18,7 +18,7 @@ extension TableViewProviderDelegate {
     func loadMore() { }
 }
 
-class TableViewDataProdiver: NSObject {
+class TableViewDataProvider: NSObject {
     weak var delegate: TableViewProviderDelegate?
     private var currentPage = 0
     private let fetchMoreLimit = 3
@@ -28,7 +28,7 @@ class TableViewDataProdiver: NSObject {
     }
 }
 
-extension TableViewDataProdiver: UITableViewDataSource, UITableViewDataSourcePrefetching {
+extension TableViewDataProvider: UITableViewDataSource, UITableViewDataSourcePrefetching {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -51,17 +51,17 @@ extension TableViewDataProdiver: UITableViewDataSource, UITableViewDataSourcePre
     }
 }
 
-extension TableViewDataProdiver: UITableViewDelegate {
+extension TableViewDataProvider: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.onCellClick(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return delegate?.cellHeight ?? 80
+        return delegate?.cellHeight ?? UITableView.automaticDimension
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return delegate?.cellHeight ?? 80
+        return delegate?.cellHeight ?? UITableView.automaticDimension
     }
 }

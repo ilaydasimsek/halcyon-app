@@ -4,7 +4,7 @@ import Firebase
 class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
     let fetcher: DiaryEntriesFetching
     let coordinator: DiaryEntriesCoordinating
-    var dataSource: TableViewDataProdiver?
+    var dataSource: TableViewDataProvider?
 
     var dataCount: Int = 10
     var canLoadMore: Bool = true
@@ -17,7 +17,7 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
         self.fetcher = fetcher
         self.coordinator = coordinator
         super.init(baseCoordinator: coordinator)
-        self.dataSource = TableViewDataProdiver(delegate: self)
+        self.dataSource = TableViewDataProvider(delegate: self)
     }
     
     required init?(coder: NSCoder) {
@@ -39,37 +39,35 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
     }
 
     private func resetUI() {
-        if let selectedIndexPath = rootView.tableView.indexPathForSelectedRow {
-            rootView.tableView.deselectRow(at: selectedIndexPath, animated: false)
-        }
+        rootView.resetTableView()
     }
     
     private func prepareTable() {
-        rootView.tableView.delegate = dataSource
-        rootView.tableView.dataSource = dataSource
-        rootView.tableView.prefetchDataSource = dataSource
-        rootView.tableView.register(UINib(nibName: DiaryEntryTableViewCell.nibName, bundle: nil),
-                                    forCellReuseIdentifier: DiaryEntryTableViewCell.nibName)
+        rootView.tableView.registerNibCell(DiaryEntryTableViewCell.nibName)
+        if let dataSource = dataSource {
+            rootView.tableView.setupDataProvider(dataSource)
+        }
     }
 }
 
 extension DiaryEntriesViewController: TableViewProviderDelegate {
-    
-    var cellHeight: CGFloat? {
-        return 100
-    }
-    
-    func itemAt(indexPath: IndexPath) -> UITableViewCell {
-        return DiaryEntryTableViewCell.dequeue(forTableView: self.rootView.tableView, indexPath: indexPath)
-    }
 
-    func loadMore() {
-        dataCount += 10
-        rootView.tableView.reloadData()
+    func itemAt(indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = DiaryEntryTableViewCell.dequeue(forTableView: self.rootView.tableView, indexPath: indexPath) as? DiaryEntryTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.textView.delegate = self
+        return cell
     }
 
     func onCellClick(at indexPath: IndexPath) {
-        print("Clicked \(indexPath.row)")
         coordinator.showEntryDetails()
+    }
+}
+
+extension DiaryEntriesViewController: UITextViewDelegate {
+
+    func textViewDidChange(_ textView: UITextView) {
+        self.rootView.updateTableViewForHeightChange()
     }
 }

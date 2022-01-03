@@ -29,7 +29,7 @@
                 <constraint firstItem="to2-0x-eTf" firstAttribute="bottom" secondItem="3ac-8I-eAJ" secondAttribute="bottom" id="wFt-6p-VAY"/>
             </constraints>
             <connections>
-                <outlet property="tableView" destination="3ac-8I-eAJ" id="hck-bM-f1T"/>
+                <outlet property="tableView" destination="3ac-8I-eAJ" id="LPe-Tj-F5h"/>
             </connections>
             <point key="canvasLocation" x="134" y="108"/>
         </view>

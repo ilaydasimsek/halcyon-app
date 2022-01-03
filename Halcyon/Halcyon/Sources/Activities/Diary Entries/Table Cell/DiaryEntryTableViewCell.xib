@@ -1,46 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="71" id="JE6-3X-Eqa" customClass="DiaryEntryTableViewCell" customModule="Halcyon" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="94" id="JE6-3X-Eqa" customClass="DiaryEntryTableViewCell" customModule="Halcyon" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JE6-3X-Eqa" id="L18-RT-k8y">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gxn-Tz-BjI" userLabel="Container View">
-                        <rect key="frame" x="0.0" y="4" width="414" height="63"/>
+                        <rect key="frame" x="0.0" y="4" width="414" height="86"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entry Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kah-uW-UNL">
-                                <rect key="frame" x="71" y="21" width="89" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Black"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="entry_icon_1" translatesAutoresizingMaskIntoConstraints="NO" id="axl-gf-Lyu">
-                                <rect key="frame" x="8" y="4" width="55" height="55"/>
-                                <color key="tintColor" name="Peach"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Lorem ipsum dolor sit er elit " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="b7I-VN-eDF">
+                                <rect key="frame" x="8" y="8" width="398" height="70"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="axl-gf-Lyu" secondAttribute="height" id="078-ne-LNE"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="j97-dJ-lJ3"/>
                                 </constraints>
-                            </imageView>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" name="Ivory"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="axl-gf-Lyu" secondAttribute="bottom" constant="4" id="0pI-We-lwf"/>
-                            <constraint firstItem="Kah-uW-UNL" firstAttribute="leading" secondItem="axl-gf-Lyu" secondAttribute="trailing" constant="8" id="3rg-lB-UMZ"/>
-                            <constraint firstItem="axl-gf-Lyu" firstAttribute="centerY" secondItem="Gxn-Tz-BjI" secondAttribute="centerY" id="435-uf-UbM"/>
-                            <constraint firstItem="Kah-uW-UNL" firstAttribute="centerY" secondItem="Gxn-Tz-BjI" secondAttribute="centerY" id="Ey4-bA-l8w"/>
-                            <constraint firstItem="axl-gf-Lyu" firstAttribute="top" secondItem="Gxn-Tz-BjI" secondAttribute="top" constant="4" id="Rnv-92-0Vu"/>
-                            <constraint firstItem="axl-gf-Lyu" firstAttribute="leading" secondItem="Gxn-Tz-BjI" secondAttribute="leading" constant="8" id="Yh4-jm-dQm"/>
+                            <constraint firstItem="b7I-VN-eDF" firstAttribute="leading" secondItem="Gxn-Tz-BjI" secondAttribute="leading" constant="8" id="9pu-bW-gBm"/>
+                            <constraint firstItem="b7I-VN-eDF" firstAttribute="top" secondItem="Gxn-Tz-BjI" secondAttribute="top" constant="8" id="Asj-Eg-Hh1"/>
+                            <constraint firstAttribute="trailing" secondItem="b7I-VN-eDF" secondAttribute="trailing" constant="8" id="hML-v2-9Q9"/>
+                            <constraint firstAttribute="bottom" secondItem="b7I-VN-eDF" secondAttribute="bottom" constant="8" id="rfP-oL-M2J"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -64,21 +61,20 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="titleLabel" destination="Kah-uW-UNL" id="QXK-s4-xPe"/>
+                <outlet property="textView" destination="b7I-VN-eDF" id="8xf-x9-b9N"/>
             </connections>
-            <point key="canvasLocation" x="118.84057971014494" y="103.45982142857143"/>
+            <point key="canvasLocation" x="118.84057971014494" y="95.758928571428569"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="entry_icon_1" width="226" height="226"/>
-        <namedColor name="Black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Ivory">
             <color red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Peach">
-            <color red="1" green="0.65490196078431373" blue="0.65098039215686276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
