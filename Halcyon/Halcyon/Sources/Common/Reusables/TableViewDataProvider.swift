@@ -4,10 +4,12 @@ protocol TableViewProviderDelegate: AnyObject {
     var dataCount: Int { get }
     var canLoadMore: Bool { get }
     var cellHeight: CGFloat? { get }
+    var movable: Bool? { get }
 
     func loadMore()
     func itemAt(indexPath: IndexPath) -> UITableViewCell
     func onCellClick(at indexPath: IndexPath)
+    func moveRow(at sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
 }
 
 extension TableViewProviderDelegate {
@@ -15,7 +17,17 @@ extension TableViewProviderDelegate {
         return nil
     }
 
+    var movable: Bool? {
+        return false
+    }
+
     func loadMore() { }
+    func onCellClick(at indexPath: IndexPath) { }
+    func moveRow(at sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if movable ?? false {
+            fatalError("Movable table has to implement moveRow function")
+        }
+    }
 }
 
 class TableViewDataProvider: NSObject {
@@ -63,5 +75,13 @@ extension TableViewDataProvider: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return delegate?.cellHeight ?? UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        delegate?.moveRow(at: sourceIndexPath, to: destinationIndexPath)
+    }
+
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return delegate?.movable ?? false
     }
 }
