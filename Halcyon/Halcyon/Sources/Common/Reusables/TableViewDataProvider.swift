@@ -17,6 +17,10 @@ extension TableViewProviderDelegate {
         return nil
     }
 
+    var canLoadMore: Bool {
+        return false
+    }
+
     var movable: Bool? {
         return false
     }
