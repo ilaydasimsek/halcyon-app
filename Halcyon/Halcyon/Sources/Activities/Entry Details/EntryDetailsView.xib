@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,19 +16,22 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the entry detail page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pji-h0-zfd">
-                    <rect key="frame" x="102" y="437.5" width="210" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="N3q-hc-lU5">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="Ivory"/>
             <constraints>
-                <constraint firstItem="Pji-h0-zfd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8Wx-R4-crc"/>
-                <constraint firstItem="Pji-h0-zfd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="NiH-E3-4eM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="N3q-hc-lU5" secondAttribute="trailing" id="49d-Oi-OWE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="N3q-hc-lU5" secondAttribute="bottom" id="fRW-PV-awb"/>
+                <constraint firstItem="N3q-hc-lU5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ioW-tT-Qpj"/>
+                <constraint firstItem="N3q-hc-lU5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="lFs-Ay-CuR"/>
             </constraints>
+            <connections>
+                <outlet property="tableView" destination="N3q-hc-lU5" id="W1k-a1-7h4"/>
+            </connections>
             <point key="canvasLocation" x="-216" y="55"/>
         </view>
     </objects>
@@ -34,5 +39,8 @@
         <namedColor name="Ivory">
             <color red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

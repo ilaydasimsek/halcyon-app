@@ -24,7 +24,7 @@ class MainTabBarCoodinator: Coordinator, MainTabBarCoodinating {
         case .profile:
             return dependencies.makeProfileViewController(coordinator: self)
         case .diaryEntries:
-            return dependencies.makeDiaryEntriesViewController(coordinator: diaryEntriesCoordinator)
+            return dependencies.makeEntryDetailsViewController(coordinator: diaryEntriesCoordinator)
         default:
             return UIViewController()
         }
