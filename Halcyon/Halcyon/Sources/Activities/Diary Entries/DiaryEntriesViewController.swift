@@ -60,41 +60,6 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
         if let dataSource = dataSource {
             rootView.tableView.setupDataProvider(dataSource)
         }
-        rootView.tableView.dragDelegate = self
-        rootView.tableView.dropDelegate = self
-        rootView.tableView.dragInteractionEnabled = true
-    }
-}
-
-extension DiaryEntriesViewController: UITableViewDragDelegate, UITableViewDropDelegate {
-    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
-        // Implementation not necessary
-        // Drop delegate is only used to show the correct preview while dropping
-    }
-    
-    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let dragItem = UIDragItem(itemProvider: NSItemProvider())
-        dragItem.localObject = models[indexPath.row]
-        return [ dragItem ]
-    }
-
-    func tableView(_ tableView: UITableView, dragPreviewParametersForRowAt indexPath: IndexPath) -> UIDragPreviewParameters? {
-        return getDraggablePropertiesCell(tableView, for: indexPath)
-    }
-
-    func tableView(_ tableView: UITableView, dropPreviewParametersForRowAt indexPath: IndexPath) -> UIDragPreviewParameters? {
-        return getDraggablePropertiesCell(tableView, for: indexPath)
-    }
-
-    func getDraggablePropertiesCell(_ tableView: UITableView, for indexPath: IndexPath) -> UIDragPreviewParameters? {
-        guard let cell = tableView.cellForRow(at: indexPath) as? DiaryEntryTableViewCell else {
-            return UIDragPreviewParameters()
-        }
-        let previewParameters = UIDragPreviewParameters()
-        let path = UIBezierPath(roundedRect: cell.containerView.frame, cornerRadius: 12.0)
-        previewParameters.visiblePath = path
-        previewParameters.backgroundColor = .clear
-        return previewParameters
     }
 }
 
@@ -107,8 +72,7 @@ extension DiaryEntriesViewController: TableViewProviderDelegate {
         guard let cell = DiaryEntryTableViewCell.dequeue(forTableView: self.rootView.tableView, indexPath: indexPath) as? DiaryEntryTableViewCell else {
             return UITableViewCell()
         }
-        cell.textView.delegate = self
-        cell.textView.text = models[indexPath.row]
+        cell.titleLabel.text = models[indexPath.row]
         return cell
     }
 
@@ -116,11 +80,8 @@ extension DiaryEntriesViewController: TableViewProviderDelegate {
         print(sourceIndexPath.row, " ", destinationIndexPath.row)
         models.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
-}
 
-extension DiaryEntriesViewController: UITextViewDelegate {
-
-    func textViewDidChange(_ textView: UITextView) {
-        self.rootView.updateTableViewForHeightChange()
+    func onCellClick(at indexPath: IndexPath) {
+        self.coordinator.showEntryDetails()
     }
 }

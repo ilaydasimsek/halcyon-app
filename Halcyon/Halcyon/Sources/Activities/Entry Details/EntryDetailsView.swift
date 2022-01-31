@@ -9,7 +9,7 @@ class EntryDetailsView: UIView {
     }
 
     private func setupUI() {
-    	// Use this function to do UI specific preparations
+        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
     }
 
     /**
@@ -23,12 +23,6 @@ class EntryDetailsView: UIView {
         DispatchQueue.main.async {
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-        }
-    }
-
-    func resetTableView() {
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: false)
         }
     }
 }

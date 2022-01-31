@@ -20,22 +20,21 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gxn-Tz-BjI" userLabel="Container View">
                         <rect key="frame" x="0.0" y="4" width="414" height="86"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Lorem ipsum dolor sit er elit " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="b7I-VN-eDF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsT-zO-Gyb">
                                 <rect key="frame" x="8" y="8" width="398" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="j97-dJ-lJ3"/>
-                                </constraints>
-                                <color key="textColor" name="Black"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="Ivory"/>
                         <constraints>
-                            <constraint firstItem="b7I-VN-eDF" firstAttribute="leading" secondItem="Gxn-Tz-BjI" secondAttribute="leading" constant="8" id="9pu-bW-gBm"/>
-                            <constraint firstItem="b7I-VN-eDF" firstAttribute="top" secondItem="Gxn-Tz-BjI" secondAttribute="top" constant="8" id="Asj-Eg-Hh1"/>
-                            <constraint firstAttribute="trailing" secondItem="b7I-VN-eDF" secondAttribute="trailing" constant="8" id="hML-v2-9Q9"/>
-                            <constraint firstAttribute="bottom" secondItem="b7I-VN-eDF" secondAttribute="bottom" constant="8" id="rfP-oL-M2J"/>
+                            <constraint firstAttribute="bottom" secondItem="KsT-zO-Gyb" secondAttribute="bottom" constant="8" id="77Y-NL-3bx"/>
+                            <constraint firstItem="KsT-zO-Gyb" firstAttribute="centerX" secondItem="Gxn-Tz-BjI" secondAttribute="centerX" id="9c2-pA-kSj"/>
+                            <constraint firstItem="KsT-zO-Gyb" firstAttribute="leading" secondItem="Gxn-Tz-BjI" secondAttribute="leading" constant="8" id="fP5-Un-dY0"/>
+                            <constraint firstAttribute="trailing" secondItem="KsT-zO-Gyb" secondAttribute="trailing" constant="8" id="jUx-ai-Xqr"/>
+                            <constraint firstItem="KsT-zO-Gyb" firstAttribute="centerY" secondItem="Gxn-Tz-BjI" secondAttribute="centerY" id="kbA-jM-Dhu"/>
+                            <constraint firstItem="KsT-zO-Gyb" firstAttribute="top" secondItem="Gxn-Tz-BjI" secondAttribute="top" constant="8" id="tmz-ZN-xJy"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -60,15 +59,12 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="containerView" destination="Gxn-Tz-BjI" id="ftg-eZ-pta"/>
-                <outlet property="textView" destination="b7I-VN-eDF" id="8xf-x9-b9N"/>
+                <outlet property="titleLabel" destination="KsT-zO-Gyb" id="PIL-6y-OOT"/>
             </connections>
             <point key="canvasLocation" x="118.84057971014494" y="95.758928571428569"/>
         </tableViewCell>
     </objects>
     <resources>
-        <namedColor name="Black">
-            <color red="0.094117647058823528" green="0.10196078431372549" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Ivory">
             <color red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

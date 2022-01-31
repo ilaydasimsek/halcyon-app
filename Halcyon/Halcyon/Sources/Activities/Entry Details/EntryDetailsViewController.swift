@@ -6,16 +6,16 @@ class EntryDetailsViewController: ViewController<EntryDetailsView> {
     var dataSource: TableViewDataProvider?
 
     var models = [
-        "Test Test 1",
-        "Test Test 2",
-        "Test Test 3",
-        "Test Test 4",
-        "Test Test 5",
-        "Test Test 6",
-        "Test Test 7",
-        "Test Test 8",
-        "Test Test 9",
-        "Test Test 10"
+        "Test Test 11 Test Test 11 Test Test 11 Test Test 11 Test 11 Test Test 11 Test Test 11 Test Test 11",
+        "Test Test 12",
+        "Test Test 13",
+        "Test Test 14",
+        "Test Test 15",
+        "Test Test 16",
+        "Test Test 17",
+        "Test Test 18",
+        "Test Test 19",
+        "Test Test 20"
     ]
 
     override var navigationBarTitle: String? {
@@ -39,21 +39,12 @@ class EntryDetailsViewController: ViewController<EntryDetailsView> {
         // TODO listen to keyboard frame change for handling table scroll on keyboard open
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        resetUI()
-    }
-
     private func prepareUI() {
         prepareTable()
     }
-
-    private func resetUI() {
-        rootView.resetTableView()
-    }
     
     private func prepareTable() {
-        rootView.tableView.registerNibCell(DiaryEntryTableViewCell.nibName)
+        rootView.tableView.registerNibCell(EntryDetailItemTableViewCell.nibName)
         if let dataSource = dataSource {
             rootView.tableView.setupDataProvider(dataSource)
         }
@@ -97,7 +88,7 @@ extension EntryDetailsViewController: UITableViewDragDelegate, UITableViewDropDe
     }
 
     func getDraggablePropertiesCell(_ tableView: UITableView, for indexPath: IndexPath) -> UIDragPreviewParameters? {
-        guard let cell = tableView.cellForRow(at: indexPath) as? DiaryEntryTableViewCell else {
+        guard let cell = tableView.cellForRow(at: indexPath) as? EntryDetailItemTableViewCell else {
             return UIDragPreviewParameters()
         }
         let previewParameters = UIDragPreviewParameters()
@@ -118,7 +109,7 @@ extension EntryDetailsViewController: TableViewProviderDelegate {
     }
 
     func itemAt(indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = DiaryEntryTableViewCell.dequeue(forTableView: self.rootView.tableView, indexPath: indexPath) as? DiaryEntryTableViewCell else {
+        guard let cell = EntryDetailItemTableViewCell.dequeue(forTableView: self.rootView.tableView, indexPath: indexPath) as? EntryDetailItemTableViewCell else {
             return UITableViewCell()
         }
         cell.textView.delegate = self
