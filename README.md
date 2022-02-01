@@ -1,3 +1,3 @@
 # Halcyon (Work In Progress)
 
-An iOS application for creating and finding Yoga routines as well as tracking Yoga progress.
+A journal application specially designed for yoga. It aims to help people keep track of their progress in yoga and encourage them to develop a yoga habit.
