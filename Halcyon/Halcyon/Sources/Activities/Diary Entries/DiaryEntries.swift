@@ -1,27 +1,16 @@
 import Foundation
 
-struct DiaryEntryItem: Decodable {
+struct DiaryEntry: Decodable {
+    let id: String
     let title: String
     let creationDate: Date?
 
-    static func decode(_ data: Data) throws -> DiaryEntryItem {
+    static func decode(_ data: Data) throws -> DiaryEntry {
         let json = try data.asJson()
-        return DiaryEntryItem(
+        return DiaryEntry(
+            id: json["id"].stringValue,
             title: json["title"].stringValue,
             creationDate: json["creationDate"].date
-        )
-    }
-}
-
-
-struct DiaryEntries: Decodable {
-    let items: [DiaryEntryItem]
-
-    static func decode(_ data: Data) throws -> DiaryEntries {
-        let json = try data.asJson()
-        let items: [DiaryEntryItem]? = try? json["items"].parseIntoArray()
-        return DiaryEntries(
-            items: items ?? []
         )
     }
 }

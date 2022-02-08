@@ -6,20 +6,12 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
     let coordinator: DiaryEntriesCoordinating
     var dataSource: TableViewDataProvider?
 
-    var dataCount: Int = 10
     var canLoadMore: Bool = true
-    var models = [
-        "Test Test 1",
-        "Test Test 2",
-        "Test Test 3",
-        "Test Test 4",
-        "Test Test 5",
-        "Test Test 6",
-        "Test Test 7",
-        "Test Test 8",
-        "Test Test 9",
-        "Test Test 10"
-    ]
+    var entries: [DiaryEntry] = [] {
+        didSet {
+            rootView.tableView.reloadData()
+        }
+    }
 
     override var navigationBarTitle: String? {
         return "My Diary Entries"
@@ -39,7 +31,7 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.prepareUI()
-        // TODO listen to keyboard frame change for handling table scroll on keyboard open
+        self.fetch()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +41,14 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
 
     private func prepareUI() {
         prepareTable()
+    }
+
+    private func fetch() {
+        self.fetcher.fetchDiaryEntries().done({ [weak self] entries in
+            self?.entries = entries
+        }).catch({ [weak self] error in
+            print(error)
+        })
     }
 
     private func resetUI() {
@@ -64,21 +64,16 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
 }
 
 extension DiaryEntriesViewController: TableViewProviderDelegate {
-    var movable: Bool? {
-        return true
+    var dataCount: Int {
+        return entries.count
     }
 
     func itemAt(indexPath: IndexPath) -> UITableViewCell {
         guard let cell = DiaryEntryTableViewCell.dequeue(forTableView: self.rootView.tableView, indexPath: indexPath) as? DiaryEntryTableViewCell else {
             return UITableViewCell()
         }
-        cell.titleLabel.text = models[indexPath.row]
+        cell.titleLabel.text = entries[indexPath.row].title
         return cell
-    }
-
-    func moveRow(at sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print(sourceIndexPath.row, " ", destinationIndexPath.row)
-        models.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
 
     func onCellClick(at indexPath: IndexPath) {
