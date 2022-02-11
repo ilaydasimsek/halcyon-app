@@ -1,7 +1,7 @@
 import UIKit
 import OSLog
 
-protocol Coordinatable {
+protocol Coordinatable where Self: Coordinator {
     var navigationController: UINavigationController { get }
 
     func start()
@@ -45,22 +45,23 @@ class Coordinator: NSObject, Coordinatable {
 extension Coordinator {
 
     final func addChildCoordinator(_ coordinator: Coordinatable) {
-        guard let coordinator = coordinator as? Coordinator else { return }
-        // TODO Make sure add function is always called by throwing an exception
         childCoordinators.append(coordinator)
     }
     
     final func removeChildCoordinator(_ coordinator: Coordinatable) {
-        guard let coordinator = coordinator as? Coordinator,
-              let index = childCoordinators.firstIndex(of: coordinator) else {
-                  Logger().error("Could not remove child coordinator. Coordinator does not exist")
-                  return
+        guard let index = childCoordinators.firstIndex(of: coordinator) else {
+            Logger().error("Could not remove child coordinator. Coordinator does not exist")
+            return
         }
         childCoordinators.remove(at: index)
     }
     
     final func removeAllChildCoordinators() {
         childCoordinators.removeAll()
+    }
+
+    final func hasChildCoordinator(_ coordinator: Coordinatable) -> Bool {
+        return self.childCoordinators.contains(coordinator)
     }
 }
 

@@ -54,7 +54,11 @@ class ViewController<T: UIView>: UIViewController {
     }
 
     var navigationBarStyle: NavigationBarStyle {
-        return .transparent
+        return .light
+    }
+
+    var navigationBarTitle: String? {
+        return nil
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -64,7 +68,7 @@ class ViewController<T: UIView>: UIViewController {
      Creates a nib from using the type (T) of specified view.
      */
     init(baseCoordinator: Coordinatable) {
-        guard let nibView = Bundle.main.loadNibNamed(T.nibIdentifier, owner: nil)?.first as? T else {
+        guard let nibView = Bundle.main.loadNibNamed(T.nibName, owner: nil)?.first as? T else {
             fatalError("Nib \(T.self) can't be loaded")
         }
         rootView = nibView
@@ -93,7 +97,6 @@ class ViewController<T: UIView>: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBackButton()
         if (hideKeyboardWhenTappedAround) {
             addHideKeyboardGesture()
         }
@@ -111,10 +114,13 @@ extension ViewController {
     private func setup() {
         self.hidesBottomBarWhenPushed = self.bottomTabBarStatus == .hidden
         setupNavigationBar()
+        setupNavigationItem()
+        setupBackButton()
     }
 
     private func setupNavigationBar() {
         let hidden = self.navigatioBarStatus == .hidden
+        let navigationController = tabBarController?.navigationController ?? navigationController
         navigationController?.setNavigationBarHidden(hidden, animated: !hidden)
 
         guard !hidden, let navBar = navigationController?.navigationBar else { return }
@@ -123,13 +129,24 @@ extension ViewController {
         navBar.setBackgroundImage(nil, for: .default)
         navBar.tintColor = navigationBarStyle.textColor
         navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBarStyle.textColor,
-                                   NSAttributedString.Key.font: UIFont.bold18]
-        navBar.setBackgroundImage(UIImage(), for: .default)
-        navBar.shadowImage = UIImage()
+                                      NSAttributedString.Key.font: UIFont.bold16]
+    }
+
+    private func setupNavigationItem() {
+        let navigationItem = tabBarController?.navigationItem ?? navigationItem
+
+        navigationItem.title = self.navigationBarTitle
+        if self.navigationBarStyle == .transparent {
+            navigationItem.setTransparent()
+        } else {
+            navigationItem.setOpaque(withColor: navigationBarStyle.backgroundColor)
+        }
     }
 
     private func setupBackButton() {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        let backButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        let navigationItem = tabBarController?.navigationItem ?? navigationItem
+        navigationItem.backBarButtonItem = backButtonItem
     }
 }
 
