@@ -5,6 +5,10 @@ class RegisterViewController: ViewController<RegisterView> {
     let fetcher: AuthenticationFetching
     let coordinator: AuthenticationCoordinating
 
+    override var navigationBarStyle: NavigationBarStyle {
+        return .transparent
+    }
+
     init(fetcher: AuthenticationFetching, coordinator: AuthenticationCoordinating) {
         self.fetcher = fetcher
         self.coordinator = coordinator

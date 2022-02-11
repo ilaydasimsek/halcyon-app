@@ -93,7 +93,7 @@ private extension MainTabBarController {
     private var configJson: JSON { return JSON([
         "bottom_navigation": [
                     ["type": "profile", "label": "Profile", "icon": "",],
-                    ["type": "home", "label": "Latest", "icon": "",]]
+                    ["type": "diaryEntries", "label": "My Entries", "icon": "",]]
                 ,]
         )
     }

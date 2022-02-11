@@ -1,7 +1,7 @@
 import UIKit
 
 extension UIView {
-    static var nibIdentifier: String {
+    static var nibName: String {
         return String(describing: self)
     }
 

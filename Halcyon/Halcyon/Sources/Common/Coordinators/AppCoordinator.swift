@@ -11,7 +11,7 @@ final class AppCoordinator: Coordinator {
     lazy var authenticationCoordinator: AuthenticationCoordinating = {
         return AuthenticationCoordinator(navigationController: self.navigationController,
                                          dependencies: self.dependencies,
-                                         onComplete: onAuthStateChanged)
+                                         onComplete: setNecessaryChildCoordinator)
     }()
 
     lazy var mainTabBarCoodinator: MainTabBarCoodinating = {
@@ -25,10 +25,10 @@ final class AppCoordinator: Coordinator {
     }
 
     override func start() {
-        self.onAuthStateChanged()
+        self.setNecessaryChildCoordinator()
     }
 
-    func onAuthStateChanged() {
+    private func setNecessaryChildCoordinator() {
         if (loggedIn) {
             self.startApplication()
         } else {
@@ -36,12 +36,14 @@ final class AppCoordinator: Coordinator {
         }
     }
 
-    func startApplication() {
+    private func startApplication() {
+        guard !self.hasChildCoordinator(mainTabBarCoodinator) else { return }
         addChildCoordinator(mainTabBarCoodinator)
         mainTabBarCoodinator.start()
     }
 
-    func startAuthentication() {
+    private func startAuthentication() {
+        guard !self.hasChildCoordinator(authenticationCoordinator) else { return }
         addChildCoordinator(authenticationCoordinator)
         authenticationCoordinator.start()
     }
@@ -62,6 +64,6 @@ extension AppCoordinator {
     }
 
     @objc func onAuthStateNotification(_ sender: Notification) {
-        self.onAuthStateChanged()
+        self.setNecessaryChildCoordinator()
     }
 }

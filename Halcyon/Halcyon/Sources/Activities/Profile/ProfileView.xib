@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,34 +20,33 @@
                     <color key="textColor" name="Default Text Color"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLX-Dl-ZMt">
-                    <rect key="frame" x="174" y="566" width="67" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLX-Dl-ZMt">
+                    <rect key="frame" x="183" y="433" width="48" height="30"/>
+                    <state key="normal" title="Logout">
+                        <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="onButtonClick:" destination="Gwq-GJ-C4o" eventType="touchUpInside" id="QaL-6L-R5E"/>
                     </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="mQ7-rc-fra"/>
-            <color key="backgroundColor" name="Default Background Color"/>
+            <color key="backgroundColor" name="Primary"/>
             <constraints>
+                <constraint firstItem="bLX-Dl-ZMt" firstAttribute="centerX" secondItem="Gwq-GJ-C4o" secondAttribute="centerX" id="At4-Nm-Sfa"/>
+                <constraint firstItem="bLX-Dl-ZMt" firstAttribute="centerY" secondItem="Gwq-GJ-C4o" secondAttribute="centerY" id="ENZ-AK-wK1"/>
                 <constraint firstItem="gql-zk-JRv" firstAttribute="centerY" secondItem="Gwq-GJ-C4o" secondAttribute="centerY" id="Ika-Y3-96I"/>
                 <constraint firstItem="gql-zk-JRv" firstAttribute="centerX" secondItem="Gwq-GJ-C4o" secondAttribute="centerX" id="gww-Tg-8lb"/>
             </constraints>
-            <connections>
-                <outlet property="screenNameLabel" destination="gql-zk-JRv" id="hOk-P9-cxE"/>
-            </connections>
             <point key="canvasLocation" x="87" y="48"/>
         </view>
     </objects>
     <resources>
-        <namedColor name="Default Background Color">
-            <color red="0.30588235294117649" green="0.32549019607843138" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Default Text Color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.25882352941176473" green="0.28235294117647058" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

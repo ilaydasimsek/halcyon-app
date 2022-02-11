@@ -4,7 +4,7 @@ import Nuke
 
 enum MainTabBarItemType: String {
     case profile
-    case home
+    case diaryEntries
 }
 
 struct MainTabBarItem: Decodable {

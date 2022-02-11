@@ -1,5 +1,15 @@
 
 extension DependencyContainer: ViewControllerFactory {
+    func makeDiaryEntriesViewController(coordinator: DiaryEntriesCoordinating) -> DiaryEntriesViewController {
+        let fetcher = self.makeDiaryEntriesFetcher()
+        return DiaryEntriesViewController(fetcher: fetcher, coordinator: coordinator)
+    }
+
+    func makeEntryDetailsViewController(coordinator: DiaryEntriesCoordinating) -> EntryDetailsViewController {
+        let fetcher = self.makeEntryDetailsFetcher()
+        return EntryDetailsViewController(fetcher: fetcher, coordinator: coordinator)
+    }
+
     func makeProfileViewController(coordinator: MainTabBarCoodinating) -> ProfileViewController {
         let fetcher = self.makeProfileFetcher()
         return ProfileViewController(fetcher: fetcher, coordinator: coordinator)
