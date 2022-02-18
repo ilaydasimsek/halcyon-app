@@ -14,7 +14,7 @@ extension JSON {
         }
 
         return try self.arrayValue.map { json in
-            guard let item = try? T.decode(json.rawData()) else {
+            guard let item = try? T.decodeFromJson(json) else {
                 throw RequestError.decodeError
             }
             return item

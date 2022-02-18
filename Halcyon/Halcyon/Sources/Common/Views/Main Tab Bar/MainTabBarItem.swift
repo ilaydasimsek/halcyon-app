@@ -14,8 +14,7 @@ struct MainTabBarItem: Decodable {
     let iconUrl: URL?
     let tag: String
     
-    static func decode(_ data: Data) throws -> MainTabBarItem {
-        let json = try data.asJson()
+    static func decodeFromJson(_ json: JSON) throws -> MainTabBarItem {
         return MainTabBarItem(
             type: MainTabBarItemType(rawValue: json["type"].stringValue),
             title: json["label"].stringValue,

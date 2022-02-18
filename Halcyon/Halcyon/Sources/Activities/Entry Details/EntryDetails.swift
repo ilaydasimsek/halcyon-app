@@ -1,12 +1,12 @@
 import Foundation
+import SwiftyJSON
 
 struct DiaryEntryItem: Decodable {
     let id: String
     let title: String
     let type: String
 
-    static func decode(_ data: Data) throws -> DiaryEntryItem {
-        let json = try data.asJson()
+    static func decodeFromJson(_ json: JSON) throws -> DiaryEntryItem {
         return DiaryEntryItem(
             id: json["type"].stringValue,
             title: json["id"].stringValue,
@@ -20,8 +20,7 @@ struct DiaryEntryDetails: Decodable {
     let items: [DiaryEntryItem]
     let creationDate: Date?
 
-    static func decode(_ data: Data) throws -> DiaryEntryDetails {
-        let json = try data.asJson()
+    static func decodeFromJson(_ json: JSON) -> DiaryEntryDetails {
         let items: [DiaryEntryItem]? = try? json["items"].parseIntoArray()
         return DiaryEntryDetails(
             id: json["type"].stringValue,
