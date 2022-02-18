@@ -1,75 +1,46 @@
 import Foundation
 import PromiseKit
-import FirebaseAuth
 import SwiftyJSON
-import FirebaseFirestore
+import OSLog
 
 class FirebaseNetwork: Networking {
-    let dependencies: Authenticating
+    let auth: Authenticating
+    let firestore: FirestoreProxy
     
     let db = FirestoreDatabase.shared
 
-    init(dependencies: Authenticating) {
-        self.dependencies = dependencies
+    init(auth: Authenticating) {
+        self.auth = auth
+        self.firestore = FirestoreProxy(auth: auth)
     }
 
     func decodedRequest<T>(_ request: Requestable) -> Promise<T> where T : Decodable {
         return Promise { promiseSeal in
-            guard let userId = dependencies.userId else {
-                _ = dependencies.logout()
-                promiseSeal.reject(RequestError.unknownError)
+            guard case let .firebase(dataType) = request.type else {
+                Logger().error("Firestore only supports firebase requests")
                 return
             }
-            let collection = getCollection(for: request, userId: userId)
+            let requestCompletion: (JSON?, Error?) -> Void = { (responseJson, error) in
+                if let responseJson = responseJson, let response = try? T.decodeFromJson(responseJson) {
+                    promiseSeal.fulfill(response)
+                } else {
+                    promiseSeal.reject(error ?? RequestError.unknownError)
+                }
+            }
 
-            switch (request.type) {
-            case .firebase(let dataType):
+            switch request.method {
+            case .get:
                 switch dataType {
                 case .singleDocument:
-                    // TODO: Add single document support
-                    print("Not supported yet.")
-                    promiseSeal.reject(RequestError.unknownError)
-                    return
+                    firestore.getDocument(for: request, completion: requestCompletion)
                 case .multipleDocuments:
-                    collection.getDocuments() { (querySnapshot, err) in
-                        if let err = err {
-                            promiseSeal.reject(err)
-                            return
-                        }
-
-                        guard let responseJson = self.formatArrayResponse(response: querySnapshot),
-                            let response = try? T.decodeFromJson(responseJson) else {
-                                promiseSeal.reject(RequestError.unknownError)
-                                return
-                        }
-                        promiseSeal.fulfill(response)
-                    }
+                    firestore.getDocuments(for: request, completion: requestCompletion)
                 }
+            case .post:
+                fatalError("Post isn't implemented yet")
             default:
-                fatalError("Firebase networking should be called with firebase typed request.")
+                fatalError("This request method isn't supported by FirestoreProxy")
             }
-            
         }
-    }
-
-    private func getCollection(for request: Requestable, userId: String) -> Query {
-        let collection = db.collection(request.path).whereField("owner_id", isEqualTo: userId)
-        for (field,value) in request.parameters {
-            collection.whereField(field, isEqualTo: value)
-        }
-        return collection
-    }
-
-    // TODO: Add creation time support
-    private func formatArrayResponse(response: QuerySnapshot?) -> JSON? {
-        guard let response = response?.documents else {
-            return nil
-        }
-        let items: [JSON] = response.compactMap({ document in
-            let mergedDict = document.data().merging(["id": document.documentID])  { (current, _) in current }
-            return JSON(mergedDict)
-        })
-        
-        return JSON(["items": items])
     }
 }

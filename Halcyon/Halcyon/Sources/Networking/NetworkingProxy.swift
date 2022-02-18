@@ -2,7 +2,7 @@ import Foundation
 import PromiseKit
 
 class NetworkingProxy: Networking {
-    let firebaseNetwork = FirebaseNetwork(dependencies: FirebaseAuthenticator())
+    let firebaseNetwork = FirebaseNetwork(auth: FirebaseAuthenticator())
     let alamofireNetwork = AlamofireNetwork()
 
     func decodedRequest<T>(_ request: Requestable) -> Promise<T> where T : Decodable {

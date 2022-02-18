@@ -8,6 +8,7 @@ protocol Authenticating {
     var userId: String? { get }
     func login(email: String, password: String) -> Promise<Authentication>
     func register(email: String, password: String) -> Promise<Authentication>
+    @discardableResult
     func logout() -> Bool
 }
 

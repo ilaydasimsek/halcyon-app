@@ -5,7 +5,7 @@ enum FirestoreNetworkingService: Requestable {
     case entry(id: String)
 
     var baseUrl: URL {
-        return ""
+        return NetworkingConstants.baseUrl
     }
 
     var path: String {
@@ -18,17 +18,29 @@ enum FirestoreNetworkingService: Requestable {
     }
 
     var method: HttpMethod {
-        return .get
+        switch self {
+        case .diaryEntries:
+            return .get
+        case .entry:
+            return .get
+        }
     }
 
     var parameters: RequestParameters {
-        return [:]
+        switch self {
+        case .entry(let id):
+            return ["id": id]
+        default:
+            return [:]
+        }
     }
 
     var type: RequestType {
         switch self {
         case .diaryEntries:
             return .firebase(dataType: .multipleDocuments)
+        case .entry:
+            return .firebase(dataType: .singleDocument)
         }
     }
 }
