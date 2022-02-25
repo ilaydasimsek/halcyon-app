@@ -37,7 +37,6 @@ enum FirestoreDataType {
 enum RequestType {
     case firebase(dataType: FirestoreDataType)
     case http
-    case authentication
 }
 
 

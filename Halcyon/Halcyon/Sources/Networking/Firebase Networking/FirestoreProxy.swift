@@ -66,17 +66,28 @@ class FirestoreProxy {
         
     }
 
-    // TODO: Add creation time support
     private func formatArrayResponse(response: QuerySnapshot?) -> JSON? {
         guard let response = response?.documents else {
             return nil
         }
         let items: [JSON] = response.compactMap({ document in
-            let mergedDict = document.data().merging(["id": document.documentID])  { (current, _) in current }
+            var additionalValues = ["id": document.documentID]
+
+            // Format FIRTimestamp into a date value SwiftyJSON can understand
+            if let timestamp = document.get("created_at") as? Timestamp,
+               let formattedDateString = formatFirestoreTimestamp(timestamp) {
+                additionalValues["created_at"] = formattedDateString
+            }
+
+            let mergedDict = document.data().merging(additionalValues)  { (current, new) in new }
             return JSON(mergedDict)
         })
         
         return JSON(["items": items])
+    }
+
+    private func formatFirestoreTimestamp(_ timestamp: Timestamp) -> String? {
+        return JSON.jsonDateFormatter.string(from: timestamp.dateValue())
     }
 
     private func formatSingleResponse(response: DocumentSnapshot?) -> JSON? {

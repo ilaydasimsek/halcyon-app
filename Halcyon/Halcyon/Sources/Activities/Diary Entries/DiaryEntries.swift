@@ -8,11 +8,10 @@ struct DiaryEntry: Decodable {
     let creationDate: Date?
 
     static func decodeFromJson(_ json: JSON) throws -> DiaryEntry {
-        let creationDate = json["creation_time"] as? Timestamp
         return DiaryEntry(
             id: json["id"].stringValue,
             title: json["title"].stringValue,
-            creationDate: creationDate?.dateValue()
+            creationDate: json["created_at"].date
         )
     }
 }

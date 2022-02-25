@@ -12,9 +12,6 @@ class NetworkingProxy: Networking {
             return firebaseNetwork.decodedRequest(request)
         case .http:
             return alamofireNetwork.decodedRequest(request)
-        case .authentication:
-            // TODO: move authentication to here
-            fatalError("Auth isn't implemented yet")
         }
     }
 }
