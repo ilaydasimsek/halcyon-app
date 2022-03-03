@@ -4,12 +4,14 @@ import SwiftyJSON
 struct DiaryEntryItem: Decodable {
     let id: String
     let title: String
+    let content: String
     let type: String
 
     static func decodeFromJson(_ json: JSON) throws -> DiaryEntryItem {
         return DiaryEntryItem(
             id: json["type"].stringValue,
             title: json["id"].stringValue,
+            content: json["content"].stringValue,
             type: json["title"].stringValue
         )
     }
@@ -17,15 +19,15 @@ struct DiaryEntryItem: Decodable {
 
 struct DiaryEntryDetails: Decodable {
     let id: String
-    let items: [DiaryEntryItem]
-    let creationDate: Date?
+    var items: [DiaryEntryItem]
+    let createdAt: Date?
 
     static func decodeFromJson(_ json: JSON) -> DiaryEntryDetails {
         let items: [DiaryEntryItem]? = try? json["items"].parseIntoArray()
         return DiaryEntryDetails(
-            id: json["type"].stringValue,
+            id: json["id"].stringValue,
             items: items ?? [],
-            creationDate: json["creationDate"].date
+            createdAt: json["created_at"].date
         )
     }
 }

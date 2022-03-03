@@ -24,7 +24,7 @@ class FirestoreProxy {
                     return
                 }
 
-                guard let responseJson = self.formatSingleResponse(response: documentSnapshot) else {
+                guard let responseJson = self.formatSingleResponse(snapshot: documentSnapshot) else {
                         completion?(nil, RequestError.unknownError)
                         return
                 }
@@ -49,7 +49,7 @@ class FirestoreProxy {
                 return
             }
 
-            guard let responseJson = self.formatArrayResponse(response: querySnapshot) else {
+            guard let responseJson = self.formatArrayResponse(snapshot: querySnapshot) else {
                     completion?(nil, RequestError.unknownError)
                     return
             }
@@ -66,36 +66,40 @@ class FirestoreProxy {
         
     }
 
-    private func formatArrayResponse(response: QuerySnapshot?) -> JSON? {
-        guard let response = response?.documents else {
+    private func formatArrayResponse(snapshot: QuerySnapshot?) -> JSON? {
+        guard let documents = snapshot?.documents else {
             return nil
         }
-        let items: [JSON] = response.compactMap({ document in
-            var additionalValues = ["id": document.documentID]
-
-            // Format FIRTimestamp into a date value SwiftyJSON can understand
-            if let timestamp = document.get("created_at") as? Timestamp,
-               let formattedDateString = formatFirestoreTimestamp(timestamp) {
-                additionalValues["created_at"] = formattedDateString
+        let items: [JSON] = documents.compactMap({ documentSnapshot in
+            guard let formattedDocument = getFormattedDocument(forSnapshot: documentSnapshot) else {
+                return nil
             }
 
-            let mergedDict = document.data().merging(additionalValues)  { (current, new) in new }
-            return JSON(mergedDict)
+            return JSON(formattedDocument)
         })
         
         return JSON(["items": items])
     }
 
-    private func formatFirestoreTimestamp(_ timestamp: Timestamp) -> String? {
-        return JSON.jsonDateFormatter.string(from: timestamp.dateValue())
-    }
-
-    private func formatSingleResponse(response: DocumentSnapshot?) -> JSON? {
-        guard let document = response else {
+    private func formatSingleResponse(snapshot: DocumentSnapshot?) -> JSON? {
+        guard let snapshot = snapshot,
+                let formattedDocument = getFormattedDocument(forSnapshot: snapshot) else {
             return nil
         }
-        
-        
-        return JSON(document)
+
+        return JSON(formattedDocument)
+    }
+
+    private func getFormattedDocument(forSnapshot snapshot: DocumentSnapshot) -> [String : Any]? {
+        var additionalValues = ["id": snapshot.documentID]
+        if let timestamp = snapshot.get("created_at") as? Timestamp,
+           let formattedDateString = formatFirestoreTimestamp(timestamp) {
+            additionalValues["created_at"] = formattedDateString
+        }
+        return snapshot.data()?.merging(additionalValues)  { (current, new) in new }
+    }
+
+    private func formatFirestoreTimestamp(_ timestamp: Timestamp) -> String? {
+        return JSON.jsonDateFormatter.string(from: timestamp.dateValue())
     }
 }

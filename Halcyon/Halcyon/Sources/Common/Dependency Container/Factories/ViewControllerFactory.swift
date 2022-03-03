@@ -3,7 +3,7 @@ import Foundation
 protocol ViewControllerFactory {
     func makeProfileViewController(coordinator: MainTabBarCoodinating) -> ProfileViewController
     func makeDiaryEntriesViewController(coordinator: DiaryEntriesCoordinating) -> DiaryEntriesViewController
-    func makeEntryDetailsViewController(coordinator: DiaryEntriesCoordinating) -> EntryDetailsViewController
+    func makeEntryDetailsViewController(coordinator: DiaryEntriesCoordinating, entryId: String) -> EntryDetailsViewController
 
     // Authentication
     func makeEntryViewController(coordinator: AuthenticationCoordinating) -> EntryViewController

@@ -77,6 +77,9 @@ extension DiaryEntriesViewController: TableViewProviderDelegate {
     }
 
     func onCellClick(at indexPath: IndexPath) {
-        self.coordinator.showEntryDetails()
+        guard let item = diaryEntries?.entries[safe: indexPath.row] else {
+            return
+        }
+        self.coordinator.showEntryDetails(entryId: item.id)
     }
 }
