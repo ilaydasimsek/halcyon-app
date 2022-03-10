@@ -11,7 +11,7 @@ extension JSON {
         }
     }
 
-    private static let jsonDateFormatter: DateFormatter = {
+    static let jsonDateFormatter: DateFormatter = {
         let fmt = DateFormatter()
         fmt.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         fmt.timeZone = TimeZone(secondsFromGMT: 0)

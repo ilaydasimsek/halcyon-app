@@ -1,7 +1,7 @@
 import UIKit
 
 protocol DiaryEntriesCoordinating where Self: Coordinatable {
-    func showEntryDetails()
+    func showEntryDetails(entryId: String)
 }
 
 class DiaryEntriesCoordinator: Coordinator, DiaryEntriesCoordinating {
@@ -10,8 +10,8 @@ class DiaryEntriesCoordinator: Coordinator, DiaryEntriesCoordinating {
         self.setViewController(as: dependencies.makeDiaryEntriesViewController(coordinator: self), animated: true)
     }
 
-    func showEntryDetails() {
-        let entryDetailsController = dependencies.makeEntryDetailsViewController(coordinator: self)
+    func showEntryDetails(entryId: String) {
+        let entryDetailsController = dependencies.makeEntryDetailsViewController(coordinator: self, entryId: entryId)
         self.navigationController.pushViewController(entryDetailsController, animated: true)
     }
 }

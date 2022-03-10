@@ -7,7 +7,7 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
     var dataSource: TableViewDataProvider?
 
     var canLoadMore: Bool = true
-    var entries: [DiaryEntry] = [] {
+    var diaryEntries: DiaryEntries? = nil {
         didSet {
             rootView.tableView.reloadData()
         }
@@ -45,7 +45,7 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
 
     private func fetch() {
         self.fetcher.fetchDiaryEntries().done({ [weak self] entries in
-            self?.entries = entries
+            self?.diaryEntries = entries
         }).catch({ [weak self] error in
             print(error)
         })
@@ -65,18 +65,21 @@ class DiaryEntriesViewController: ViewController<DiaryEntriesView> {
 
 extension DiaryEntriesViewController: TableViewProviderDelegate {
     var dataCount: Int {
-        return entries.count
+        return diaryEntries?.entries.count ?? 0
     }
 
     func itemAt(indexPath: IndexPath) -> UITableViewCell {
         guard let cell = DiaryEntryTableViewCell.dequeue(forTableView: self.rootView.tableView, indexPath: indexPath) as? DiaryEntryTableViewCell else {
             return UITableViewCell()
         }
-        cell.titleLabel.text = entries[indexPath.row].title
+        cell.titleLabel.text = diaryEntries?.entries[indexPath.row].title ?? ""
         return cell
     }
 
     func onCellClick(at indexPath: IndexPath) {
-        self.coordinator.showEntryDetails()
+        guard let item = diaryEntries?.entries[safe: indexPath.row] else {
+            return
+        }
+        self.coordinator.showEntryDetails(entryId: item.id)
     }
 }

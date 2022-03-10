@@ -8,6 +8,6 @@ protocol Networkable {
 
 class DependencyContainer: Networkable {
 
-    let networking: Networking = AlamofireNetwork()
+    let networking: Networking = NetworkingProxy()
     let auth: Authenticating = FirebaseAuthenticator()
 }

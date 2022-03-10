@@ -5,26 +5,22 @@ class EntryDetailsViewController: ViewController<EntryDetailsView> {
     let coordinator: DiaryEntriesCoordinating
     var dataSource: TableViewDataProvider?
 
-    var models = [
-        "Test Test 11 Test Test 11 Test Test 11 Test Test 11 Test 11 Test Test 11 Test Test 11 Test Test 11",
-        "Test Test 12",
-        "Test Test 13",
-        "Test Test 14",
-        "Test Test 15",
-        "Test Test 16",
-        "Test Test 17",
-        "Test Test 18",
-        "Test Test 19",
-        "Test Test 20"
-    ]
+    let entryId: String
+
+    var entry: DiaryEntryDetails? {
+        didSet {
+            rootView.tableView.reloadData()
+        }
+    }
 
     override var navigationBarTitle: String? {
         return "Entry Item"
     }
 
-    init(fetcher: EntryDetailsFetching, coordinator: DiaryEntriesCoordinating) {
+    init(fetcher: EntryDetailsFetching, coordinator: DiaryEntriesCoordinating, entryId: String) {
         self.fetcher = fetcher
         self.coordinator = coordinator
+        self.entryId = entryId
         super.init(baseCoordinator: coordinator)
         self.dataSource = TableViewDataProvider(delegate: self)
     }
@@ -36,6 +32,7 @@ class EntryDetailsViewController: ViewController<EntryDetailsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.prepareUI()
+        self.fetch()
         // TODO listen to keyboard frame change for handling table scroll on keyboard open
     }
 
@@ -54,16 +51,11 @@ class EntryDetailsViewController: ViewController<EntryDetailsView> {
     }
 
     private func fetch() {
-
-        /**
-            Send the fetch request here, ideally this should return a promise using PromiseKit
-            To listen to the returned promise:
-                Promise<Data>.done({ data in
-                   // Handle success
-                }).catch({ error in
-                   // Handle error
-                })
-        */
+        self.fetcher.fetchEntry(id: self.entryId).done({ [weak self] entry in
+            self?.entry = entry
+        }).catch({ error in
+            print(error)
+        })
     }
 }
 
@@ -75,7 +67,9 @@ extension EntryDetailsViewController: UITableViewDragDelegate, UITableViewDropDe
     
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         let dragItem = UIDragItem(itemProvider: NSItemProvider())
-        dragItem.localObject = models[indexPath.row]
+        if let localObject = entry?.items[safe: indexPath.row]?.content {
+            dragItem.localObject = localObject
+        }
         return [ dragItem ]
     }
 
@@ -101,7 +95,7 @@ extension EntryDetailsViewController: UITableViewDragDelegate, UITableViewDropDe
 
 extension EntryDetailsViewController: TableViewProviderDelegate {
     var dataCount: Int {
-        return self.models.count
+        return self.entry?.items.count ?? 0
     }
 
     var movable: Bool? {
@@ -113,13 +107,13 @@ extension EntryDetailsViewController: TableViewProviderDelegate {
             return UITableViewCell()
         }
         cell.textView.delegate = self
-        cell.textView.text = models[indexPath.row]
+        cell.textView.text = entry?.items[indexPath.row].content
         return cell
     }
 
     func moveRow(at sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         print(sourceIndexPath.row, " ", destinationIndexPath.row)
-        models.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        entry?.items.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
 }
 
