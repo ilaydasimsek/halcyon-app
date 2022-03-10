@@ -1,10 +1,6 @@
 
 extension DependencyContainer: FetcherFactory {
 
-    func makeProfileFetcher() -> ProfileFetching {
-       return ProfileFetcher(dependencies: self)
-    }
-
     func makeDiaryEntriesFetcher() -> DiaryEntriesFetching {
        return DiaryEntriesFetcher(dependencies: self)
     }

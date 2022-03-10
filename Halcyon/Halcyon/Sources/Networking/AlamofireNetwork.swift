@@ -4,7 +4,6 @@ import SwiftyJSON
 import PromiseKit
 
 protocol Networking {
-    func request(_ request: Requestable) -> Promise<Data>
     func decodedRequest<T: Decodable>(_ request: Requestable) -> Promise<T>
 }
 
@@ -36,7 +35,7 @@ class AlamofireNetwork: Networking {
                // Handle error
             })
      */
-    func request(_ request: Requestable) -> Promise<Data> {
+    func request(_ request: Requestable) -> Promise<JSON> {
         return Promise { promiseSeal in
             sessionManager.request(request.baseUrl.appendingPathComponent(request.path),
                 method: request.method.alamofireEquivalent,
@@ -45,7 +44,11 @@ class AlamofireNetwork: Networking {
                     .responseData(queue: self.dispatchQueue) { response in
                         switch response.result {
                         case .success(let value):
-                           promiseSeal.fulfill(value)
+                            guard let json = try? value.asJson() else {
+                                promiseSeal.reject(RequestError.decodeError)
+                                return
+                            }
+                           promiseSeal.fulfill(json)
                         case .failure(let error):
                             promiseSeal.reject(RequestError.from(error))
                         }
@@ -70,8 +73,8 @@ class AlamofireNetwork: Networking {
      */
     func decodedRequest<T: Decodable>(_ request: Requestable) -> Promise<T> {
         return Promise { promiseSeal in
-            self.request(request).done({ data in
-                guard let response = try? T.decode(data) else {
+            self.request(request).done({ json in
+                guard let response = try? T.decodeFromJson(json) else {
                     promiseSeal.reject(RequestError.decodeError)
                     return
                 }

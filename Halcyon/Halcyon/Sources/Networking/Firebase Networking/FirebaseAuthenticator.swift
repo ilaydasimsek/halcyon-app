@@ -5,14 +5,19 @@ import OSLog
 
 protocol Authenticating {
     var authenticated: Bool { get }
+    var userId: String? { get }
     func login(email: String, password: String) -> Promise<Authentication>
     func register(email: String, password: String) -> Promise<Authentication>
+    @discardableResult
     func logout() -> Bool
 }
 
 class FirebaseAuthenticator: Authenticating {
     let authStateChangeListener: AuthStateDidChangeListenerHandle
     let firebaseAuth = Auth.auth()
+    var userId: String? {
+        return firebaseAuth.currentUser?.uid
+    }
     var authenticated: Bool {
         return Auth.auth().currentUser != nil
     }

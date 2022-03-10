@@ -3,7 +3,7 @@ import Foundation
 
 protocol Decodable {
 
-    static func decode(_ data: Data) throws -> Self
+    static func decodeFromJson(_ json: JSON) throws -> Self
 }
 
 extension Data {

@@ -1,13 +1,13 @@
 import Foundation
 import FirebaseAuth
+import SwiftyJSON
 
 struct Authentication: Decodable {
     let userId: String
     let email: String
     let accessToken: String
 
-    static func decode(_ data: Data) throws -> Authentication {
-        let json = try data.asJson()
+    static func decodeFromJson(_ json: JSON) throws -> Authentication {
         return Authentication(
             userId: json["uid"].stringValue,
             email: json["email"].stringValue,

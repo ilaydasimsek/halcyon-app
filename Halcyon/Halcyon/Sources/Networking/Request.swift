@@ -29,10 +29,21 @@ enum HttpMethod: String {
     }
 }
 
+enum FirestoreDataType {
+    case singleDocument
+    case multipleDocuments
+}
+
+enum RequestType {
+    case firebase(dataType: FirestoreDataType)
+    case http
+}
+
 
 protocol Requestable {
     var baseUrl: URL { get }
     var path: String { get }
     var method: HttpMethod { get }
     var parameters: RequestParameters { get }
+    var type: RequestType { get }
 }
